@@ -225,8 +225,6 @@ export default function Home() {
   const [videoReady, setVideoReady] = useState(false)
   const [showFallback, setShowFallback] = useState(false)
   const scrollIndicatorRef = useRef<HTMLDivElement>(null)
-  const heroH1Ref = useRef<HTMLHeadingElement>(null)
-  const heroTagRef = useRef<HTMLParagraphElement>(null)
   const [activeCard, setActiveCard] = useState<ActiveCard>(null)
 
   // Only show fallback images if video hasn't loaded after 3s
@@ -245,29 +243,6 @@ export default function Home() {
     }, 2200)
     return () => clearInterval(interval)
   }, [videoReady, showFallback])
-
-  // Hero text animation
-  useEffect(() => {
-    const h1 = heroH1Ref.current
-    const tag = heroTagRef.current
-    if (!h1 || !tag) return
-    h1.style.opacity = '0'
-    h1.style.transform = 'translateY(20px)'
-    tag.style.opacity = '0'
-    tag.style.transform = 'translateY(20px)'
-
-    const t1 = setTimeout(() => {
-      h1.style.transition = 'opacity 1.2s cubic-bezier(0.16,1,0.3,1), transform 1.2s cubic-bezier(0.16,1,0.3,1)'
-      h1.style.opacity = '1'
-      h1.style.transform = 'translateY(0)'
-    }, 600)
-    const t2 = setTimeout(() => {
-      tag.style.transition = 'opacity 1.2s cubic-bezier(0.16,1,0.3,1), transform 1.2s cubic-bezier(0.16,1,0.3,1)'
-      tag.style.opacity = '1'
-      tag.style.transform = 'translateY(0)'
-    }, 1000)
-    return () => { clearTimeout(t1); clearTimeout(t2) }
-  }, [])
 
   // Scroll indicator fade
   useEffect(() => {
@@ -356,12 +331,12 @@ export default function Home() {
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '5.5vh', background: 'black', zIndex: 4 }} />
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '5.5vh', background: 'black', zIndex: 4 }} />
 
-        {/* Content */}
+        {/* Content — logo only */}
         <div style={{
           position: 'absolute',
-          bottom: '12%',
+          top: '50%',
           left: '50%',
-          transform: 'translateX(-50%)',
+          transform: 'translate(-50%, -50%)',
           textAlign: 'center',
           zIndex: 10,
           width: '100%',
@@ -369,49 +344,16 @@ export default function Home() {
         }}>
           <img
             src="/logo.png"
-            alt=""
+            alt="Island Key"
             style={{
-              height: 'clamp(80px, 14vw, 140px)',
+              height: 'clamp(160px, 30vw, 340px)',
               width: 'auto',
-              margin: '0 auto 1rem',
+              margin: '0 auto',
               display: 'block',
-              opacity: 0.85,
-              filter: 'drop-shadow(0 4px 20px rgba(0,0,0,0.4))',
+              opacity: 0.92,
+              filter: 'drop-shadow(0 4px 30px rgba(0,0,0,0.5))',
             }}
           />
-          <div style={{
-            width: 40,
-            height: 1,
-            background: 'linear-gradient(90deg, transparent, var(--gold), transparent)',
-            opacity: 0.5,
-            margin: '0 auto 1.2rem',
-          }} />
-          <h1
-            ref={heroH1Ref}
-            style={{
-              fontFamily: 'var(--font-fraunces)',
-              fontWeight: 200,
-              fontSize: 'clamp(3rem, 7vw, 5.5rem)',
-              letterSpacing: '0.12em',
-              color: 'var(--cream)',
-            }}
-          >
-            Island Key
-          </h1>
-          <p
-            ref={heroTagRef}
-            style={{
-              fontFamily: 'var(--font-jakarta)',
-              fontWeight: 300,
-              fontSize: 'clamp(0.65rem, 1.3vw, 0.85rem)',
-              letterSpacing: '0.45em',
-              textTransform: 'uppercase',
-              color: 'rgba(253,252,250,0.8)',
-              marginTop: '0.8rem',
-            }}
-          >
-            Your island unlocked.
-          </p>
         </div>
 
         {/* Scroll indicator */}
