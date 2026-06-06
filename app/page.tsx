@@ -1,13 +1,10 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { motion, AnimatePresence } from 'framer-motion'
 import RevealWrapper from '@/components/RevealWrapper'
+import EnquiryForm from '@/components/EnquiryForm'
 import Footer from '@/components/Footer'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const FALLBACK_IMAGES = [
   'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80&auto=format&fit=crop',
@@ -18,75 +15,218 @@ const FALLBACK_IMAGES = [
   'https://images.unsplash.com/photo-1468413253725-0d5181091126?w=1920&q=80&auto=format&fit=crop',
 ]
 
-const GRID_IMAGES = [
-  'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=1200&q=80&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=80&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1540541338287-41700c1d5500?w=1200&q=80&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1602002418816-5c0aeef426aa?w=1200&q=80&auto=format&fit=crop',
-]
+type ActiveCard = 'host' | 'operator' | null
 
-function AnimatedLine({ dark = false }: { dark?: boolean }) {
+function CollaborateCard({
+  type,
+  title,
+  subtitle,
+  isActive,
+  isOtherActive,
+  onToggle,
+}: {
+  type: 'host' | 'operator'
+  title: string
+  subtitle: string
+  isActive: boolean
+  isOtherActive: boolean
+  onToggle: () => void
+}) {
   const [hovered, setHovered] = useState(false)
-  return (
-    <span
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        display: 'inline-block',
-        height: '0.5px',
-        background: dark ? 'var(--navy)' : 'var(--gold)',
-        width: hovered ? 44 : 28,
-        transition: 'width 0.35s ease',
-        flexShrink: 0,
-      }}
-    />
-  )
-}
+  const isHost = type === 'host'
 
-function CtaLink({ href, label, dark = false }: { href: string; label: string; dark?: boolean }) {
-  const [hovered, setHovered] = useState(false)
   return (
-    <Link
-      href={href}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+    <div
+      className="collab-card"
       style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '0.7rem',
-        textDecoration: 'none',
-        color: dark ? 'var(--navy)' : 'var(--cream)',
-        fontFamily: 'var(--font-jakarta)',
-        fontWeight: 300,
-        fontSize: '0.75rem',
-        letterSpacing: '0.2em',
-        textTransform: 'uppercase',
+        position: 'relative',
+        opacity: isOtherActive ? 0.3 : 1,
+        transition: 'opacity 0.5s cubic-bezier(0.16,1,0.3,1)',
+        pointerEvents: isOtherActive ? 'none' : 'auto',
       }}
     >
-      <span
+      {/* Card header / button */}
+      <div
+        onClick={onToggle}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         style={{
-          display: 'inline-block',
-          height: '0.5px',
-          background: dark ? 'var(--navy)' : 'var(--gold)',
-          width: hovered ? 44 : 28,
-          transition: 'width 0.35s ease',
-          flexShrink: 0,
+          position: 'relative',
+          cursor: 'pointer',
+          padding: 'clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem)',
+          border: `1px solid ${isActive ? 'var(--gold)' : hovered ? 'rgba(196,165,90,0.5)' : 'rgba(253,252,250,0.08)'}`,
+          background: isActive
+            ? 'rgba(196,165,90,0.04)'
+            : hovered
+              ? 'rgba(253,252,250,0.02)'
+              : 'transparent',
+          transition: 'all 0.5s cubic-bezier(0.16,1,0.3,1)',
+          overflow: 'hidden',
         }}
-      />
-      {label}
-    </Link>
+      >
+        {/* Atmospheric corner glow */}
+        <div style={{
+          position: 'absolute',
+          top: isHost ? 0 : 'auto',
+          bottom: isHost ? 'auto' : 0,
+          right: 0,
+          width: '60%',
+          height: '60%',
+          background: isHost
+            ? 'radial-gradient(ellipse at top right, rgba(196,165,90,0.04) 0%, transparent 70%)'
+            : 'radial-gradient(ellipse at bottom right, rgba(26,138,125,0.04) 0%, transparent 70%)',
+          pointerEvents: 'none',
+          transition: 'opacity 0.5s ease',
+          opacity: hovered || isActive ? 1 : 0,
+        }} />
+
+        {/* Accent line */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: isActive ? '100%' : hovered ? '60%' : '0%',
+          height: 1,
+          background: isHost
+            ? 'linear-gradient(90deg, var(--gold), transparent)'
+            : 'linear-gradient(90deg, var(--teal), transparent)',
+          transition: 'width 0.6s cubic-bezier(0.16,1,0.3,1)',
+        }} />
+
+        {/* Icon */}
+        <div style={{
+          width: 48,
+          height: 48,
+          border: `1px solid ${isActive ? 'var(--gold)' : 'rgba(253,252,250,0.12)'}`,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginBottom: 'clamp(1.5rem, 3vw, 2.5rem)',
+          transition: 'border-color 0.4s ease, transform 0.4s ease',
+          transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
+        }}>
+          {isHost ? (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={isActive ? 'var(--gold)' : 'rgba(253,252,250,0.4)'} strokeWidth="1" style={{ transition: 'stroke 0.4s ease' }}>
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={isActive ? 'var(--teal)' : 'rgba(253,252,250,0.4)'} strokeWidth="1" style={{ transition: 'stroke 0.4s ease' }}>
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+            </svg>
+          )}
+        </div>
+
+        <h3 style={{
+          fontFamily: 'var(--font-fraunces)',
+          fontWeight: 200,
+          fontSize: 'clamp(1.4rem, 2.5vw, 2rem)',
+          color: 'var(--cream)',
+          lineHeight: 1.15,
+          marginBottom: '0.8rem',
+          letterSpacing: '0.01em',
+        }}>
+          {title}
+        </h3>
+
+        <p style={{
+          fontFamily: 'var(--font-jakarta)',
+          fontWeight: 300,
+          fontSize: 'clamp(0.75rem, 1.2vw, 0.85rem)',
+          color: 'var(--cream)',
+          opacity: 0.45,
+          lineHeight: 1.7,
+          maxWidth: 340,
+        }}>
+          {subtitle}
+        </p>
+
+        {/* Toggle indicator */}
+        <div style={{
+          position: 'absolute',
+          bottom: 'clamp(1.5rem, 3vw, 2rem)',
+          right: 'clamp(1.5rem, 4vw, 3rem)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.6rem',
+        }}>
+          <span style={{
+            fontFamily: 'var(--font-jakarta)',
+            fontWeight: 300,
+            fontSize: '0.6rem',
+            letterSpacing: '0.25em',
+            textTransform: 'uppercase',
+            color: 'var(--cream)',
+            opacity: isActive ? 0.6 : 0.25,
+            transition: 'opacity 0.3s ease',
+          }}>
+            {isActive ? 'Close' : 'Apply'}
+          </span>
+          <div style={{
+            width: 24,
+            height: 24,
+            border: `1px solid ${isActive ? 'var(--gold)' : 'rgba(253,252,250,0.15)'}`,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'all 0.4s cubic-bezier(0.16,1,0.3,1)',
+            transform: isActive ? 'rotate(45deg)' : 'rotate(0deg)',
+          }}>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <line x1="5" y1="1" x2="5" y2="9" stroke={isActive ? 'var(--gold)' : 'rgba(253,252,250,0.35)'} strokeWidth="0.8" style={{ transition: 'stroke 0.3s ease' }} />
+              <line x1="1" y1="5" x2="9" y2="5" stroke={isActive ? 'var(--gold)' : 'rgba(253,252,250,0.35)'} strokeWidth="0.8" style={{ transition: 'stroke 0.3s ease' }} />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      {/* Expanded form area */}
+      <AnimatePresence>
+        {isActive && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            style={{ overflow: 'hidden' }}
+          >
+            <div style={{
+              padding: 'clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem)',
+              borderLeft: `1px solid rgba(253,252,250,0.08)`,
+              borderRight: `1px solid rgba(253,252,250,0.08)`,
+              borderBottom: `1px solid rgba(253,252,250,0.08)`,
+              position: 'relative',
+            }}>
+              {/* Subtle top glow inside form */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: '20%',
+                width: '60%',
+                height: 120,
+                background: isHost
+                  ? 'radial-gradient(ellipse at top, rgba(196,165,90,0.03) 0%, transparent 70%)'
+                  : 'radial-gradient(ellipse at top, rgba(26,138,125,0.03) 0%, transparent 70%)',
+                pointerEvents: 'none',
+              }} />
+              <EnquiryForm type={isHost ? 'host' : 'operator'} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const fallbackRef = useRef<HTMLDivElement>(null)
   const [fallbackIdx, setFallbackIdx] = useState(0)
   const [videoReady, setVideoReady] = useState(false)
   const scrollIndicatorRef = useRef<HTMLDivElement>(null)
-  const gridImgRefs = useRef<(HTMLImageElement | null)[]>([])
   const heroH1Ref = useRef<HTMLHeadingElement>(null)
   const heroTagRef = useRef<HTMLParagraphElement>(null)
+  const [activeCard, setActiveCard] = useState<ActiveCard>(null)
 
   // Image cycle fallback — stops once video is ready
   useEffect(() => {
@@ -131,36 +271,21 @@ export default function Home() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // GSAP parallax for grid images
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gridImgRefs.current.forEach(img => {
-        if (!img) return
-        gsap.fromTo(img,
-          { y: '-5%' },
-          {
-            y: '5%',
-            ease: 'none',
-            scrollTrigger: {
-              trigger: img,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: true,
-            },
-          }
-        )
-      })
-    })
-    return () => ctx.revert()
-  }, [])
+  const toggleCard = (type: 'host' | 'operator') => {
+    setActiveCard(prev => prev === type ? null : type)
+    if (activeCard !== type) {
+      setTimeout(() => {
+        document.getElementById('collaborate')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 100)
+    }
+  }
 
   return (
     <main>
-      {/* ═══ S1: HERO ═══ */}
+      {/* ═══ HERO ═══ */}
       <section style={{ height: '100vh', position: 'relative', overflow: 'hidden' }}>
         {/* Fallback image cycle */}
         <div
-          ref={fallbackRef}
           style={{
             position: 'absolute',
             inset: 0,
@@ -170,13 +295,13 @@ export default function Home() {
             transition: 'opacity 1.2s ease',
           }}
         >
-          {FALLBACK_IMAGES.map((id, i) => (
+          {FALLBACK_IMAGES.map((src, i) => (
             <div
-              key={id}
+              key={src}
               style={{
                 position: 'absolute',
                 inset: 0,
-                backgroundImage: `url('${id}')`,
+                backgroundImage: `url('${src}')`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 opacity: i === fallbackIdx ? 1 : 0,
@@ -209,7 +334,7 @@ export default function Home() {
           <source src="/videos/reel.mp4" type="video/mp4" />
         </video>
 
-        {/* Overlay — gradient vignette for cinematic depth */}
+        {/* Overlay */}
         <div style={{
           position: 'absolute', inset: 0, zIndex: 3,
           background: `
@@ -245,7 +370,6 @@ export default function Home() {
               filter: 'drop-shadow(0 4px 20px rgba(0,0,0,0.4))',
             }}
           />
-          {/* Gold ornamental rule */}
           <div style={{
             width: 40,
             height: 1,
@@ -314,7 +438,7 @@ export default function Home() {
         `}</style>
       </section>
 
-      {/* ═══ S2: STATEMENT ═══ */}
+      {/* ═══ STATEMENT ═══ */}
       <section style={{
         background: '#0e0e0e',
         padding: 'clamp(100px, 18vh, 180px) clamp(2rem, 8vw, 120px)',
@@ -333,342 +457,101 @@ export default function Home() {
             textAlign: 'center',
             color: 'var(--cream)',
           }}>
-            Crete has places most guests never find. Island Key changes that.
+            Crete has secrets most guests can&apos;t find. Island Key changes that.
           </p>
           <div className="gold-rule" style={{ marginTop: 'clamp(2rem, 4vh, 3.5rem)' }} />
         </RevealWrapper>
       </section>
 
-      {/* ═══ S3: ATMOSPHERE GRID ═══ */}
-      <section style={{ background: 'var(--ink)', padding: '2px' }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '2px',
-        }} className="atmosphere-grid">
-          {/* Left tall image */}
-          <div className="img-hover-wrap" style={{ height: '65vh', position: 'relative' }}>
-            <img
-              ref={el => { gridImgRefs.current[0] = el }}
-              src={GRID_IMAGES[0]}
-              alt="Cretan coastline"
-              style={{ width: '100%', height: '120%', objectFit: 'cover' }}
-            />
-          </div>
-          {/* Right stacked */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-            <div className="img-hover-wrap" style={{ height: '32.5vh', position: 'relative' }}>
-              <img
-                ref={el => { gridImgRefs.current[1] = el }}
-                src={GRID_IMAGES[1]}
-                alt="Mediterranean scene"
-                style={{ width: '100%', height: '120%', objectFit: 'cover' }}
-              />
-            </div>
-            <div className="img-hover-wrap" style={{ height: '32.5vh', position: 'relative' }}>
-              <img
-                ref={el => { gridImgRefs.current[2] = el }}
-                src={GRID_IMAGES[2]}
-                alt="Island landscape"
-                style={{ width: '100%', height: '120%', objectFit: 'cover' }}
-              />
-            </div>
-          </div>
-        </div>
-        {/* Full-width 4th image */}
-        <div className="img-hover-wrap" style={{ height: '35vh', marginTop: '2px', position: 'relative' }}>
-          <img
-            ref={el => { gridImgRefs.current[3] = el }}
-            src={GRID_IMAGES[3]}
-            alt="Island atmosphere"
-            style={{ width: '100%', height: '120%', objectFit: 'cover' }}
-          />
-        </div>
-        <style jsx>{`
-          @media (max-width: 768px) {
-            .atmosphere-grid { grid-template-columns: 1fr !important; }
-          }
-        `}</style>
-      </section>
-
-      {/* ═══ S4: THE CONCEPT ═══ */}
-      <section style={{
-        background: 'var(--navy)',
-        padding: 'clamp(80px, 12vh, 120px) clamp(2rem, 8vw, 100px)',
-      }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '4rem',
-          alignItems: 'center',
-        }} className="concept-grid">
-          <div style={{ maxWidth: 520 }}>
-            <RevealWrapper>
-              <p style={{
-                color: 'var(--gold)',
-                fontSize: '0.6rem',
-                letterSpacing: '0.3em',
-                textTransform: 'uppercase',
-                fontFamily: 'var(--font-jakarta)',
-                fontWeight: 300,
-                marginBottom: '1.2rem',
-              }}>
-                The platform
-              </p>
-            </RevealWrapper>
-            <RevealWrapper delay={100}>
-              <h2 style={{
-                fontFamily: 'var(--font-fraunces)',
-                fontWeight: 300,
-                fontSize: 'clamp(2rem, 4vw, 3rem)',
-                color: 'var(--cream)',
-                marginBottom: '1.5rem',
-                lineHeight: 1.1,
-              }}>
-                Built for where you stay.
-              </h2>
-            </RevealWrapper>
-            <RevealWrapper delay={200}>
-              <p style={{
-                fontFamily: 'var(--font-jakarta)',
-                fontWeight: 300,
-                fontSize: '1rem',
-                lineHeight: 1.85,
-                color: 'rgba(253,252,250,0.7)',
-              }}>
-                Island Key connects guests to the island through the properties they trust. Your host sets it up. You arrive and it&apos;s already yours.
-              </p>
-            </RevealWrapper>
-          </div>
-          <div className="concept-image img-hover-wrap" style={{ position: 'relative', minHeight: 400 }}>
-            <img
-              src={GRID_IMAGES[3]}
-              alt="Island atmosphere"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', minHeight: 400 }}
-            />
-            {/* Soft vignette on image */}
-            <div style={{
-              position: 'absolute', inset: 0, pointerEvents: 'none',
-              background: 'linear-gradient(135deg, rgba(27,45,79,0.3) 0%, transparent 60%)',
-            }} />
-          </div>
-        </div>
-        <style jsx>{`
-          @media (max-width: 768px) {
-            .concept-grid { grid-template-columns: 1fr !important; }
-            .concept-image { margin-top: 2rem; }
-          }
-        `}</style>
-      </section>
-
-      {/* ═══ S5: FOR HOSTS ═══ */}
-      <section style={{ background: 'var(--ink)' }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-        }} className="hosts-grid">
-          <div style={{
-            padding: 'clamp(80px, 10vh, 100px) clamp(2rem, 5vw, 80px)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-          }}>
-            <RevealWrapper>
-              <p style={{
-                color: 'var(--gold)',
-                fontSize: '0.6rem',
-                letterSpacing: '0.3em',
-                textTransform: 'uppercase',
-                fontFamily: 'var(--font-jakarta)',
-                fontWeight: 300,
-                marginBottom: '1.2rem',
-              }}>
-                For Properties
-              </p>
-            </RevealWrapper>
-            <RevealWrapper delay={100}>
-              <h2 style={{
-                fontFamily: 'var(--font-fraunces)',
-                fontWeight: 200,
-                fontSize: 'clamp(2.2rem, 4vw, 3.5rem)',
-                color: 'var(--cream)',
-                marginBottom: '1.2rem',
-                lineHeight: 1.1,
-              }}>
-                Your property, elevated.
-              </h2>
-            </RevealWrapper>
-            <RevealWrapper delay={200}>
-              <p style={{
-                fontFamily: 'var(--font-jakarta)',
-                fontWeight: 300,
-                fontSize: '0.95rem',
-                lineHeight: 1.8,
-                color: 'var(--cream)',
-                opacity: 0.65,
-                maxWidth: 400,
-                marginBottom: '2.5rem',
-              }}>
-                Island Key becomes the concierge layer your guests remember. Set up once. Run quietly.
-              </p>
-            </RevealWrapper>
-            <RevealWrapper delay={300}>
-              <CtaLink href="/hosts" label="Apply to host" />
-            </RevealWrapper>
-          </div>
-          <div className="hosts-image img-hover-wrap" style={{ position: 'relative', minHeight: 500 }}>
-            <img
-              src={GRID_IMAGES[0]}
-              alt="Premium property interior"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', minHeight: 500 }}
-            />
-            <div style={{
-              position: 'absolute', inset: 0, pointerEvents: 'none',
-              background: 'linear-gradient(90deg, rgba(14,14,14,0.4) 0%, transparent 50%)',
-            }} />
-          </div>
-        </div>
-        <style jsx>{`
-          @media (max-width: 768px) {
-            .hosts-grid { grid-template-columns: 1fr !important; }
-            .hosts-image { display: none; }
-          }
-        `}</style>
-      </section>
-
-      {/* ═══ S6: FOR OPERATORS ═══ */}
-      <section style={{ background: '#f7f5f0' }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-        }} className="operators-grid">
-          <div className="operators-image img-hover-wrap" style={{ position: 'relative', minHeight: 500 }}>
-            <img
-              src={GRID_IMAGES[1]}
-              alt="Local operator experience"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', minHeight: 500 }}
-            />
-            <div style={{
-              position: 'absolute', inset: 0, pointerEvents: 'none',
-              background: 'linear-gradient(270deg, rgba(247,245,240,0.3) 0%, transparent 50%)',
-            }} />
-          </div>
-          <div style={{
-            padding: 'clamp(80px, 10vh, 100px) clamp(2rem, 5vw, 80px)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-          }}>
-            <RevealWrapper>
-              <p style={{
-                color: 'var(--teal)',
-                fontSize: '0.6rem',
-                letterSpacing: '0.3em',
-                textTransform: 'uppercase',
-                fontFamily: 'var(--font-jakarta)',
-                fontWeight: 300,
-                marginBottom: '1.2rem',
-              }}>
-                For Operators
-              </p>
-            </RevealWrapper>
-            <RevealWrapper delay={100}>
-              <h2 style={{
-                fontFamily: 'var(--font-fraunces)',
-                fontWeight: 200,
-                fontSize: 'clamp(2.2rem, 4vw, 3.5rem)',
-                color: 'var(--navy)',
-                marginBottom: '1.2rem',
-                lineHeight: 1.1,
-              }}>
-                Your craft. Our guests.
-              </h2>
-            </RevealWrapper>
-            <RevealWrapper delay={200}>
-              <p style={{
-                fontFamily: 'var(--font-jakarta)',
-                fontWeight: 300,
-                fontSize: '0.95rem',
-                lineHeight: 1.8,
-                color: 'rgba(27,45,79,0.65)',
-                maxWidth: 400,
-                marginBottom: '2.5rem',
-              }}>
-                Join a curated network of trusted local experts. We bring the guests. You deliver the experience.
-              </p>
-            </RevealWrapper>
-            <RevealWrapper delay={300}>
-              <CtaLink href="/operators" label="Join the network" dark />
-            </RevealWrapper>
-          </div>
-        </div>
-        <style jsx>{`
-          @media (max-width: 768px) {
-            .operators-grid { grid-template-columns: 1fr !important; }
-            .operators-image { display: none; }
-          }
-        `}</style>
-      </section>
-
-      {/* ═══ S7: SIGNAL ═══ */}
-      <section style={{
-        background: 'var(--ink)',
-        padding: 'clamp(100px, 16vh, 160px) clamp(2rem, 6vw, 80px)',
-        textAlign: 'center',
-        position: 'relative',
-      }}>
-        {/* Subtle radial glow behind content */}
+      {/* ═══ COLLABORATE ═══ */}
+      <section
+        id="collaborate"
+        style={{
+          background: 'var(--ink)',
+          padding: 'clamp(80px, 14vh, 140px) clamp(1.5rem, 6vw, 80px)',
+          position: 'relative',
+        }}
+      >
+        {/* Background atmospheric element */}
         <div style={{
           position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '600px',
-          height: '400px',
-          background: 'radial-gradient(ellipse, rgba(196,165,90,0.03) 0%, transparent 70%)',
+          width: '80%',
+          maxWidth: 900,
+          height: '60%',
+          background: 'radial-gradient(ellipse, rgba(27,45,79,0.06) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} />
-        <RevealWrapper>
-          <div className="gold-rule" style={{ marginBottom: '2.5rem' }} />
-          <p style={{
-            color: 'var(--gold)',
-            fontSize: '0.6rem',
-            letterSpacing: '0.35em',
-            textTransform: 'uppercase',
-            fontFamily: 'var(--font-jakarta)',
-            fontWeight: 300,
-            marginBottom: '1.8rem',
+
+        <div style={{ position: 'relative', maxWidth: 1100, margin: '0 auto' }}>
+          <RevealWrapper>
+            <div style={{ textAlign: 'center', marginBottom: 'clamp(3rem, 6vh, 5rem)' }}>
+              <p style={{
+                fontFamily: 'var(--font-jakarta)',
+                fontWeight: 300,
+                fontSize: '0.6rem',
+                letterSpacing: '0.35em',
+                textTransform: 'uppercase',
+                color: 'var(--gold)',
+                marginBottom: '1.2rem',
+              }}>
+                Join the network
+              </p>
+              <h2 style={{
+                fontFamily: 'var(--font-fraunces)',
+                fontWeight: 200,
+                fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
+                color: 'var(--cream)',
+                lineHeight: 1.1,
+                letterSpacing: '0.02em',
+                marginBottom: '1rem',
+              }}>
+                Collaborate with us.
+              </h2>
+              <div className="gold-rule" style={{ marginTop: '1.5rem' }} />
+            </div>
+          </RevealWrapper>
+
+          {/* Cards */}
+          <div className="collab-grid" style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: 'clamp(1rem, 2vw, 2rem)',
           }}>
-            Now open
-          </p>
-          <p style={{
-            fontFamily: 'var(--font-fraunces)',
-            fontWeight: 200,
-            fontStyle: 'italic',
-            fontSize: 'clamp(1.5rem, 3vw, 2.8rem)',
-            color: 'var(--cream)',
-            marginBottom: '1.8rem',
-            lineHeight: 1.2,
-          }}>
-            Launching Chania, summer 2026.
-          </p>
-          <p style={{
-            fontFamily: 'var(--font-jakarta)',
-            fontWeight: 300,
-            fontSize: '0.85rem',
-            color: 'var(--cream)',
-            opacity: 0.4,
-            maxWidth: 440,
-            margin: '0 auto',
-            lineHeight: 1.8,
-          }}>
-            A closed network of verified properties and local operators. Applications reviewed individually.
-          </p>
-          <div className="gold-rule" style={{ marginTop: '2.5rem' }} />
-        </RevealWrapper>
+            <RevealWrapper delay={100}>
+              <CollaborateCard
+                type="host"
+                title="Property Owner, Hotel or Host"
+                subtitle="Turn your property into a full experience. Island Key becomes the concierge layer your guests remember."
+                isActive={activeCard === 'host'}
+                isOtherActive={activeCard === 'operator'}
+                onToggle={() => toggleCard('host')}
+              />
+            </RevealWrapper>
+            <RevealWrapper delay={250}>
+              <CollaborateCard
+                type="operator"
+                title="Experience &amp; Service Provider"
+                subtitle="Join a curated network of trusted local experts. We bring the guests. You deliver the experience."
+                isActive={activeCard === 'operator'}
+                isOtherActive={activeCard === 'host'}
+                onToggle={() => toggleCard('operator')}
+              />
+            </RevealWrapper>
+          </div>
+        </div>
+
+        <style jsx>{`
+          @media (max-width: 768px) {
+            .collab-grid {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}</style>
       </section>
 
-      {/* ═══ S8: FOOTER ═══ */}
       <Footer />
     </main>
   )
