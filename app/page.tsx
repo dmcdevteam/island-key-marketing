@@ -247,7 +247,7 @@ export default function Home() {
           position: 'absolute',
           inset: 0,
           zIndex: 1,
-          backgroundColor: '#0d1a2e',
+          backgroundColor: '#0a1322',
         }} />
 
         {/* Video */}
@@ -357,7 +357,7 @@ export default function Home() {
 
       {/* ═══ STATEMENT ═══ */}
       <section style={{
-        background: 'var(--ink)',
+        background: 'linear-gradient(180deg, #070e1a 0%, var(--ink) 40%, var(--ink) 60%, #070e1a 100%)',
         padding: 'clamp(60px, 12vh, 180px) clamp(2rem, 8vw, 120px)',
         position: 'relative',
       }}>
@@ -384,7 +384,7 @@ export default function Home() {
       <section
         id="collaborate"
         style={{
-          background: 'var(--ink)',
+          background: 'linear-gradient(180deg, #070e1a 0%, var(--ink) 30%, var(--ink) 70%, #070e1a 100%)',
           padding: 'clamp(40px, 8vh, 140px) clamp(1.5rem, 6vw, 80px)',
           position: 'relative',
         }}
