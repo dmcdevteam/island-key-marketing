@@ -12,7 +12,7 @@ export default function Nav() {
   useEffect(() => {
     if (!isHome) return
     const onScroll = () => {
-      setScrolled(window.scrollY > window.innerHeight * 0.7)
+      setScrolled(window.scrollY > window.innerHeight * 0.25)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -31,7 +31,7 @@ export default function Nav() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '1.5rem 3rem',
+        padding: '1.8rem 3rem',
         opacity: visible ? 1 : 0,
         pointerEvents: visible ? 'auto' : 'none',
         background: visible ? 'rgba(10,10,10,0.8)' : 'transparent',
@@ -56,6 +56,9 @@ export default function Nav() {
       <div
         className="nav-links"
         style={{
+          position: 'absolute',
+          left: '50%',
+          transform: 'translateX(-50%)',
           display: 'flex',
           gap: '2rem',
         }}

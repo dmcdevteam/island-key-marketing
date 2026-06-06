@@ -19,7 +19,7 @@ const labelStyle: React.CSSProperties = {
   textTransform: 'uppercase',
   fontFamily: 'var(--font-jakarta)',
   fontWeight: 300,
-  color: 'rgba(253,252,250,0.4)',
+  color: 'rgba(253,252,250,0.65)',
   display: 'block',
   marginBottom: '0.5rem',
 }
@@ -27,7 +27,7 @@ const labelStyle: React.CSSProperties = {
 const inputStyle: React.CSSProperties = {
   background: 'transparent',
   border: 'none',
-  borderBottom: '0.5px solid rgba(253,252,250,0.2)',
+  borderBottom: '1px solid rgba(253,252,250,0.35)',
   color: 'var(--cream)',
   padding: '0.75rem 0',
   fontFamily: 'var(--font-jakarta)',
@@ -70,7 +70,7 @@ function TextInput({ name, placeholder, type = 'text', required, value, onChange
       onBlur={() => setFocused(false)}
       style={{
         ...inputStyle,
-        borderBottomColor: focused ? 'var(--gold)' : 'rgba(253,252,250,0.2)',
+        borderBottomColor: focused ? 'var(--gold)' : 'rgba(253,252,250,0.35)',
       }}
     />
   )
@@ -96,8 +96,8 @@ function SelectInput({ name, options, placeholder, value, onChange }: {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'right 0 center',
         paddingRight: '1.5rem',
-        borderBottomColor: focused ? 'var(--gold)' : 'rgba(253,252,250,0.2)',
-        color: value ? 'var(--cream)' : 'rgba(253,252,250,0.2)',
+        borderBottomColor: focused ? 'var(--gold)' : 'rgba(253,252,250,0.35)',
+        color: value ? 'var(--cream)' : 'rgba(253,252,250,0.4)',
       }}
     >
       <option value="" style={{ background: '#0e0e0e', color: 'var(--cream)' }}>{placeholder || 'Select...'}</option>
@@ -124,7 +124,7 @@ function TextArea({ name, placeholder, value, onChange }: {
         ...inputStyle,
         resize: 'none',
         minHeight: 100,
-        borderBottomColor: focused ? 'var(--gold)' : 'rgba(253,252,250,0.2)',
+        borderBottomColor: focused ? 'var(--gold)' : 'rgba(253,252,250,0.35)',
       }}
     />
   )
@@ -651,7 +651,7 @@ export default function EnquiryForm({ type }: Props) {
         <span style={{
           fontSize: '0.65rem',
           color: 'var(--cream)',
-          opacity: 0.35,
+          opacity: 0.55,
           fontFamily: 'var(--font-jakarta)',
           fontWeight: 300,
           whiteSpace: 'nowrap',
