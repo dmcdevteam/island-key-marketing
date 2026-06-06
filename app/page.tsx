@@ -223,19 +223,28 @@ export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [fallbackIdx, setFallbackIdx] = useState(0)
   const [videoReady, setVideoReady] = useState(false)
+  const [showFallback, setShowFallback] = useState(false)
   const scrollIndicatorRef = useRef<HTMLDivElement>(null)
   const heroH1Ref = useRef<HTMLHeadingElement>(null)
   const heroTagRef = useRef<HTMLParagraphElement>(null)
   const [activeCard, setActiveCard] = useState<ActiveCard>(null)
 
+  // Only show fallback images if video hasn't loaded after 3s
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!videoReady) setShowFallback(true)
+    }, 3000)
+    return () => clearTimeout(timeout)
+  }, [videoReady])
+
   // Image cycle fallback — stops once video is ready
   useEffect(() => {
-    if (videoReady) return
+    if (videoReady || !showFallback) return
     const interval = setInterval(() => {
       setFallbackIdx(prev => (prev + 1) % FALLBACK_IMAGES.length)
     }, 2200)
     return () => clearInterval(interval)
-  }, [videoReady])
+  }, [videoReady, showFallback])
 
   // Hero text animation
   useEffect(() => {
@@ -291,7 +300,7 @@ export default function Home() {
             inset: 0,
             zIndex: 1,
             backgroundColor: '#0d1a2e',
-            opacity: videoReady ? 0 : 1,
+            opacity: videoReady ? 0 : showFallback ? 1 : 0,
             transition: 'opacity 1.2s ease',
           }}
         >
