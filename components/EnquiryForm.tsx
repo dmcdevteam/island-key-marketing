@@ -363,7 +363,7 @@ export default function EnquiryForm({ type }: Props) {
           margin: '0 auto 2rem',
           lineHeight: 1.7,
         }}>
-          We review every application personally. Spyros will be in touch on WhatsApp within 48 hours.
+          We review every application personally. We will be in touch on WhatsApp within 48 hours.
         </p>
         <div style={{
           width: 60,
