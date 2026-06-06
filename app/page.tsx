@@ -346,7 +346,7 @@ export default function Home() {
             src="/logo.png"
             alt="Island Key"
             style={{
-              height: 'clamp(160px, 30vw, 340px)',
+              height: 'clamp(220px, 42vw, 480px)',
               width: 'auto',
               margin: '0 auto',
               display: 'block',

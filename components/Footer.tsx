@@ -30,25 +30,14 @@ export default function Footer() {
         }} />
       </div>
       <div style={{
-        padding: '3rem 64px 3.5rem',
+        padding: '3rem 2rem 3.5rem',
         display: 'flex',
-        justifyContent: 'space-between',
+        flexDirection: 'column',
         alignItems: 'center',
-        flexWrap: 'wrap',
         gap: '1.5rem',
       }}>
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none' }}>
-          <img src="/logo.png" alt="" style={{ height: 24, width: 'auto', opacity: 0.5 }} />
-          <span style={{
-            fontFamily: 'var(--font-fraunces)',
-            fontWeight: 200,
-            fontSize: '0.8rem',
-            letterSpacing: '0.15em',
-            color: 'var(--cream)',
-            opacity: 0.4,
-          }}>
-            ISLAND KEY
-          </span>
+        <Link href="/" style={{ textDecoration: 'none' }}>
+          <img src="/logo.png" alt="Island Key" style={{ height: 60, width: 'auto', opacity: 0.4 }} />
         </Link>
         <div style={{
           fontFamily: 'var(--font-jakarta)',
@@ -59,8 +48,9 @@ export default function Footer() {
           color: 'var(--cream)',
           opacity: 0.3,
           display: 'flex',
-          gap: '2.5rem',
+          gap: '2rem',
           flexWrap: 'wrap',
+          justifyContent: 'center',
           alignItems: 'center',
         }}>
           <a href="mailto:bookings@islandkey.gr" style={{

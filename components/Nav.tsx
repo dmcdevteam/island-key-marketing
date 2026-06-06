@@ -24,8 +24,8 @@ export default function Nav() {
         zIndex: 50,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '1.8rem 3rem',
+        justifyContent: 'center',
+        padding: '1.4rem 3rem',
         opacity: scrolled ? 1 : 0,
         pointerEvents: scrolled ? 'auto' : 'none',
         background: scrolled ? 'rgba(10,10,10,0.85)' : 'transparent',
@@ -34,19 +34,12 @@ export default function Nav() {
         transition: 'opacity 0.4s ease, background 0.4s ease',
       }}
     >
-      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', textDecoration: 'none' }}>
-        <img src="/logo.png" alt="" style={{ height: 26, width: 'auto', opacity: 0.9 }} />
-        <span style={{
-          fontFamily: 'var(--font-fraunces)',
-          fontWeight: 200,
-          fontSize: '0.85rem',
-          letterSpacing: '0.15em',
-          color: 'var(--cream)',
-          opacity: 0.9,
-        }}>
-          ISLAND KEY
-        </span>
+      {/* Logo icon — left */}
+      <Link href="/" style={{ position: 'absolute', left: '2rem', display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+        <img src="/logo_icon.png" alt="Island Key" style={{ height: 32, width: 'auto', opacity: 0.85 }} />
       </Link>
+
+      {/* Collaborate — center */}
       <a
         href="#collaborate"
         style={{
@@ -58,8 +51,8 @@ export default function Nav() {
           color: 'var(--cream)',
           opacity: 0.6,
           textDecoration: 'none',
-          transition: 'opacity 0.3s ease',
-          padding: '0.5rem 1rem',
+          transition: 'opacity 0.3s ease, border-color 0.3s ease',
+          padding: '0.5rem 1.2rem',
           border: '1px solid rgba(196,165,90,0.2)',
         }}
         onMouseEnter={e => (e.currentTarget.style.opacity = '1', e.currentTarget.style.borderColor = 'rgba(196,165,90,0.5)')}
@@ -67,7 +60,8 @@ export default function Nav() {
       >
         Collaborate
       </a>
-      {/* Gold accent line at bottom of nav */}
+
+      {/* Gold accent line at bottom */}
       {scrolled && (
         <div style={{
           position: 'absolute',
