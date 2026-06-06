@@ -269,7 +269,7 @@ export default function HeroContent({ visible, onOpenHost, onOpenOperator }: Pro
               ) : (
                 <a
                   key={item}
-                  href={item === 'Contact' ? 'mailto:bookings@islandkey.gr' : '#'}
+                  href={item === 'Contact' ? 'mailto:hello@islandkey.gr' : '#'}
                   style={{
                     fontSize: '0.6rem',
                     letterSpacing: '0.22em',

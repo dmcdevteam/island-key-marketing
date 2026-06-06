@@ -53,7 +53,7 @@ export default function Footer() {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-          <a href="mailto:bookings@islandkey.gr" style={{
+          <a href="mailto:hello@islandkey.gr" style={{
             color: 'inherit',
             textDecoration: 'none',
             transition: 'opacity 0.3s ease',
@@ -61,7 +61,7 @@ export default function Footer() {
             onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
             onMouseLeave={e => (e.currentTarget.style.opacity = '0.6')}
           >
-            bookings@islandkey.gr
+            hello@islandkey.gr
           </a>
           <span style={{
             width: 2,
