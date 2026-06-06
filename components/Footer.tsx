@@ -42,8 +42,8 @@ export default function Footer() {
         <div style={{
           fontFamily: 'var(--font-jakarta)',
           fontWeight: 200,
-          fontSize: '0.6rem',
-          letterSpacing: '0.22em',
+          fontSize: 'clamp(0.4rem, 1.5vw, 0.6rem)',
+          letterSpacing: 'clamp(0.1em, 0.5vw, 0.22em)',
           textTransform: 'uppercase',
           color: 'var(--cream)',
           opacity: 0.3,
