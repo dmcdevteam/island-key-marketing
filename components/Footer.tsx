@@ -37,7 +37,7 @@ export default function Footer() {
         gap: '1.5rem',
       }}>
         <Link href="/" style={{ textDecoration: 'none' }}>
-          <img src="/logo.png" alt="Island Key" style={{ height: 60, width: 'auto', opacity: 0.4 }} />
+          <img src="/logo.png" alt="Island Key" style={{ height: 140, width: 'auto', opacity: 0.4 }} />
         </Link>
         <div style={{
           fontFamily: 'var(--font-jakarta)',
@@ -49,7 +49,7 @@ export default function Footer() {
           opacity: 0.3,
           display: 'flex',
           gap: '2rem',
-          flexWrap: 'wrap',
+          flexWrap: 'nowrap',
           justifyContent: 'center',
           alignItems: 'center',
         }}>
