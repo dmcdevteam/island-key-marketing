@@ -100,9 +100,9 @@ function SelectInput({ name, options, placeholder, value, onChange }: {
         color: value ? 'var(--cream)' : 'rgba(253,252,250,0.4)',
       }}
     >
-      <option value="" style={{ background: '#0e0e0e', color: 'var(--cream)' }}>{placeholder || 'Select...'}</option>
+      <option value="" style={{ background: '#0d1a2e', color: 'var(--cream)' }}>{placeholder || 'Select...'}</option>
       {options.map(o => (
-        <option key={o} value={o} style={{ background: '#0e0e0e', color: 'var(--cream)' }}>{o}</option>
+        <option key={o} value={o} style={{ background: '#0d1a2e', color: 'var(--cream)' }}>{o}</option>
       ))}
     </select>
   )

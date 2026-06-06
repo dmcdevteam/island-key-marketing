@@ -357,7 +357,7 @@ export default function Home() {
 
       {/* ═══ STATEMENT ═══ */}
       <section style={{
-        background: '#0e0e0e',
+        background: 'var(--ink)',
         padding: 'clamp(60px, 12vh, 180px) clamp(2rem, 8vw, 120px)',
         position: 'relative',
       }}>
