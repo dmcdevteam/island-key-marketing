@@ -301,7 +301,7 @@ export default function Home() {
             src="/logo.png"
             alt="Island Key"
             style={{
-              height: 'clamp(220px, 42vw, 480px)',
+              height: 'clamp(220px, 26vw, 288px)',
               width: 'auto',
               margin: '0 auto 1.5rem',
               display: 'block',
@@ -367,7 +367,7 @@ export default function Home() {
             fontFamily: 'var(--font-fraunces)',
             fontWeight: 200,
             fontStyle: 'italic',
-            fontSize: 'clamp(1.8rem, 4.5vw, 3.8rem)',
+            fontSize: 'clamp(1.8rem, 3.5vw, 3rem)',
             lineHeight: 1.25,
             maxWidth: 780,
             margin: '0 auto',
