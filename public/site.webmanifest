@@ -1,0 +1,10 @@
+{
+  "name": "Island Key",
+  "short_name": "Island Key",
+  "description": "Your island unlocked.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a1322",
+  "theme_color": "#1B2D4F",
+  "icons": []
+}

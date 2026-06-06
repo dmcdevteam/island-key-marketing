@@ -5,23 +5,70 @@ import Nav from '@/components/Nav'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Island Key — Your Island Unlocked',
-  description: 'The concierge ecosystem for premium island stays. Partner with us.',
-  icons: {
-    icon: [
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-    ],
-    apple: '/apple-touch-icon.png',
-    shortcut: '/favicon.ico',
+  metadataBase: new URL('https://www.islandkey.gr'),
+  title: {
+    default: 'Island Key — Your Island Unlocked',
+    template: '%s — Island Key',
+  },
+  description:
+    'Island Key is the concierge platform built into the places you stay in Crete. Curated experiences, trusted local operators, and everything the island offers — unlocked from your accommodation.',
+  keywords: [
+    'Crete concierge',
+    'Crete experiences',
+    'villa concierge Crete',
+    'things to do in Crete',
+    'Chania activities',
+    'luxury travel Crete',
+    'island concierge platform',
+    'Crete travel guide',
+    'private transfers Crete',
+    'boat tours Crete',
+  ],
+  authors: [{ name: 'Island Key', url: 'https://www.islandkey.gr' }],
+  creator: 'Island Key',
+  publisher: 'Island Key',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   openGraph: {
-    title: 'Island Key — Your Island Unlocked',
-    description: 'The concierge ecosystem for premium island stays.',
+    type: 'website',
+    locale: 'en_US',
     url: 'https://www.islandkey.gr',
     siteName: 'Island Key',
-    locale: 'en_US',
-    type: 'website',
+    title: 'Island Key — Your Island Unlocked',
+    description:
+      'The concierge platform built into the places you stay in Crete. Experiences, transfers, rentals and local experts — curated and ready before you arrive.',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Island Key — Your Island Unlocked',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Island Key — Your Island Unlocked',
+    description:
+      'The concierge platform built into the places you stay in Crete.',
+    images: ['/og-image.jpg'],
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/site.webmanifest',
+  alternates: {
+    canonical: 'https://www.islandkey.gr',
   },
 }
 
@@ -33,6 +80,32 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fraunces.variable} ${jakarta.variable}`}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Island Key',
+              url: 'https://www.islandkey.gr',
+              logo: 'https://www.islandkey.gr/logo.svg',
+              description:
+                'Island Key is a concierge platform connecting guests at premium Crete properties to curated local experiences and trusted operators.',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Chania',
+                addressRegion: 'Crete',
+                addressCountry: 'GR',
+              },
+              contactPoint: {
+                '@type': 'ContactPoint',
+                contactType: 'partnerships',
+                email: 'hello@islandkey.gr',
+              },
+              sameAs: [],
+            }),
+          }}
+        />
         <LenisProvider>
           <Nav />
           {children}
