@@ -119,7 +119,7 @@ export async function POST(request: NextRequest) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY)
     await resend.emails.send({
-      from: 'Island Key <onboarding@resend.dev>',
+      from: 'Island Key <hello@islandkey.gr>',
       to: process.env.ENQUIRY_TO ?? 'bookings@islandkey.gr',
       subject,
       html,
