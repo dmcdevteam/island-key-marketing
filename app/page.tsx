@@ -92,7 +92,7 @@ function CollaborateCard({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          marginBottom: 'clamp(1.5rem, 3vw, 2.5rem)',
+          margin: '0 auto clamp(1.5rem, 3vw, 2.5rem)',
           transition: 'border-color 0.4s ease, transform 0.4s ease',
           transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
         }}>
@@ -117,6 +117,7 @@ function CollaborateCard({
           lineHeight: 1.15,
           marginBottom: '0.8rem',
           letterSpacing: '0.01em',
+          textAlign: 'center',
         }}>
           {title}
         </h3>
@@ -129,18 +130,19 @@ function CollaborateCard({
           opacity: 0.45,
           lineHeight: 1.7,
           maxWidth: 340,
+          margin: '0 auto',
+          textAlign: 'center',
         }}>
           {subtitle}
         </p>
 
         {/* Toggle indicator */}
         <div style={{
-          position: 'absolute',
-          bottom: 'clamp(1.5rem, 3vw, 2rem)',
-          right: 'clamp(1.5rem, 4vw, 3rem)',
           display: 'flex',
           alignItems: 'center',
+          justifyContent: 'center',
           gap: '0.6rem',
+          marginTop: 'clamp(1.5rem, 3vw, 2.5rem)',
         }}>
           <span style={{
             fontFamily: 'var(--font-jakarta)',
