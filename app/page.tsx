@@ -303,12 +303,23 @@ export default function Home() {
             style={{
               height: 'clamp(220px, 42vw, 480px)',
               width: 'auto',
-              margin: '0 auto',
+              margin: '0 auto 1.5rem',
               display: 'block',
               opacity: 0.92,
               filter: 'drop-shadow(0 4px 30px rgba(0,0,0,0.5))',
             }}
           />
+          <p style={{
+            fontFamily: 'var(--font-jakarta)',
+            fontWeight: 400,
+            fontSize: 'clamp(0.7rem, 1.4vw, 0.95rem)',
+            letterSpacing: '0.45em',
+            textTransform: 'uppercase',
+            color: 'var(--cream)',
+            textShadow: '0 2px 12px rgba(0,0,0,0.6)',
+          }}>
+            Your island. Unlocked.
+          </p>
         </div>
 
         {/* Scroll indicator */}
