@@ -10,7 +10,7 @@ interface Props {
   type: FormType
 }
 
-const MONTHS = ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 // ── Field styles
 const labelStyle: React.CSSProperties = {
