@@ -358,7 +358,7 @@ export default function Home() {
       {/* ═══ STATEMENT ═══ */}
       <section style={{
         background: '#0e0e0e',
-        padding: 'clamp(100px, 18vh, 180px) clamp(2rem, 8vw, 120px)',
+        padding: 'clamp(60px, 12vh, 180px) clamp(2rem, 8vw, 120px)',
         position: 'relative',
       }}>
         <RevealWrapper>
@@ -385,7 +385,7 @@ export default function Home() {
         id="collaborate"
         style={{
           background: 'var(--ink)',
-          padding: 'clamp(80px, 14vh, 140px) clamp(1.5rem, 6vw, 80px)',
+          padding: 'clamp(40px, 8vh, 140px) clamp(1.5rem, 6vw, 80px)',
           position: 'relative',
         }}
       >
