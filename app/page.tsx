@@ -6,15 +6,6 @@ import RevealWrapper from '@/components/RevealWrapper'
 import EnquiryForm from '@/components/EnquiryForm'
 import Footer from '@/components/Footer'
 
-const FALLBACK_IMAGES = [
-  'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1920&q=80&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?w=1920&q=80&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=1920&q=80&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=1920&q=80&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1468413253725-0d5181091126?w=1920&q=80&auto=format&fit=crop',
-]
-
 type ActiveCard = 'host' | 'operator' | null
 
 function CollaborateCard({
@@ -221,28 +212,9 @@ function CollaborateCard({
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [fallbackIdx, setFallbackIdx] = useState(0)
   const [videoReady, setVideoReady] = useState(false)
-  const [showFallback, setShowFallback] = useState(false)
   const scrollIndicatorRef = useRef<HTMLDivElement>(null)
   const [activeCard, setActiveCard] = useState<ActiveCard>(null)
-
-  // Only show fallback images if video hasn't loaded after 3s
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (!videoReady) setShowFallback(true)
-    }, 3000)
-    return () => clearTimeout(timeout)
-  }, [videoReady])
-
-  // Image cycle fallback — stops once video is ready
-  useEffect(() => {
-    if (videoReady || !showFallback) return
-    const interval = setInterval(() => {
-      setFallbackIdx(prev => (prev + 1) % FALLBACK_IMAGES.length)
-    }, 2200)
-    return () => clearInterval(interval)
-  }, [videoReady, showFallback])
 
   // Scroll indicator fade
   useEffect(() => {
@@ -268,32 +240,13 @@ export default function Home() {
     <main>
       {/* ═══ HERO ═══ */}
       <section style={{ height: '100vh', position: 'relative', overflow: 'hidden' }}>
-        {/* Fallback image cycle */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            zIndex: 1,
-            backgroundColor: '#0d1a2e',
-            opacity: videoReady ? 0 : showFallback ? 1 : 0,
-            transition: 'opacity 1.2s ease',
-          }}
-        >
-          {FALLBACK_IMAGES.map((src, i) => (
-            <div
-              key={src}
-              style={{
-                position: 'absolute',
-                inset: 0,
-                backgroundImage: `url('${src}')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                opacity: i === fallbackIdx ? 1 : 0,
-                transition: 'opacity 2s ease',
-              }}
-            />
-          ))}
-        </div>
+        {/* Dark background while video loads */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 1,
+          backgroundColor: '#0d1a2e',
+        }} />
 
         {/* Video */}
         <video
