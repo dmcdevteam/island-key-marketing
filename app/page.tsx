@@ -88,13 +88,14 @@ export default function Home() {
   const heroH1Ref = useRef<HTMLHeadingElement>(null)
   const heroTagRef = useRef<HTMLParagraphElement>(null)
 
-  // Image cycle fallback
+  // Image cycle fallback — stops once video is ready
   useEffect(() => {
+    if (videoReady) return
     const interval = setInterval(() => {
       setFallbackIdx(prev => (prev + 1) % FALLBACK_IMAGES.length)
     }, 2200)
     return () => clearInterval(interval)
-  }, [])
+  }, [videoReady])
 
   // Hero text animation
   useEffect(() => {
@@ -192,6 +193,7 @@ export default function Home() {
           muted
           loop
           playsInline
+          preload="auto"
           onCanPlay={() => setVideoReady(true)}
           style={{
             position: 'absolute',
