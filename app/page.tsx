@@ -247,7 +247,7 @@ export default function Home() {
           position: 'absolute',
           inset: 0,
           zIndex: 1,
-          backgroundColor: '#0a1322',
+          backgroundColor: '#081a17',
         }} />
 
         {/* Video */}
@@ -357,7 +357,7 @@ export default function Home() {
 
       {/* ═══ STATEMENT ═══ */}
       <section style={{
-        background: 'linear-gradient(180deg, #070e1a 0%, var(--ink) 40%, var(--ink) 60%, #070e1a 100%)',
+        background: 'var(--ink)',
         padding: 'clamp(60px, 12vh, 180px) clamp(2rem, 8vw, 120px)',
         position: 'relative',
       }}>
@@ -384,7 +384,7 @@ export default function Home() {
       <section
         id="collaborate"
         style={{
-          background: 'linear-gradient(180deg, #070e1a 0%, var(--ink) 30%, var(--ink) 70%, #070e1a 100%)',
+          background: 'var(--ink)',
           padding: 'clamp(40px, 8vh, 140px) clamp(1.5rem, 6vw, 80px)',
           position: 'relative',
         }}
@@ -398,7 +398,7 @@ export default function Home() {
           width: '80%',
           maxWidth: 900,
           height: '60%',
-          background: 'radial-gradient(ellipse, rgba(27,45,79,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(26,138,125,0.06) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} />
 

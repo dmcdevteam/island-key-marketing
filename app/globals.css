@@ -5,7 +5,7 @@
   --font-fraunces: var(--font-fraunces);
   --font-jakarta:  var(--font-jakarta);
 
-  --color-ink:   #0a1322;
+  --color-ink:   #081a17;
   --color-navy:  #1B2D4F;
   --color-teal:  #1A8A7D;
   --color-terra: #D4854A;
@@ -15,7 +15,7 @@
 
 /* ── CSS VARIABLES ── */
 :root {
-  --ink:          #0a1322;
+  --ink:          #081a17;
   --navy:         #1B2D4F;
   --teal:         #1A8A7D;
   --terra:        #D4854A;
@@ -91,7 +91,7 @@ body::after {
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a1322;
+  background: #081a17;
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(196, 165, 90, 0.2);

@@ -4,7 +4,7 @@
   "description": "Your island unlocked.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a1322",
-  "theme_color": "#1B2D4F",
+  "background_color": "#081a17",
+  "theme_color": "#1A8A7D",
   "icons": []
 }
