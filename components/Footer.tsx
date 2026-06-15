@@ -18,7 +18,7 @@ export default function Footer() {
         <div style={{
           width: 6,
           height: 6,
-          border: '0.5px solid rgba(196,165,90,0.3)',
+          border: '0.5px solid rgba(200,244,53,0.3)',
           transform: 'rotate(45deg)',
           margin: '0 1.5rem',
           flexShrink: 0,
@@ -40,12 +40,12 @@ export default function Footer() {
           <img src="/logo.png" alt="Island Key" style={{ height: 140, width: 'auto', opacity: 0.4 }} />
         </Link>
         <div style={{
-          fontFamily: 'var(--font-jakarta)',
+          fontFamily: 'var(--font-dm-sans)',
           fontWeight: 200,
           fontSize: 'clamp(0.4rem, 1.5vw, 0.6rem)',
           letterSpacing: 'clamp(0.1em, 0.5vw, 0.22em)',
           textTransform: 'uppercase',
-          color: 'var(--cream)',
+          color: 'var(--shell)',
           opacity: 0.3,
           display: 'flex',
           gap: '2rem',

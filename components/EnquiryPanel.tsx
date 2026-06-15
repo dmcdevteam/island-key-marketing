@@ -15,9 +15,9 @@ interface Props {
 const inputStyle: React.CSSProperties = {
   background: 'rgba(253,252,250,0.04)',
   border: '0.5px solid rgba(253,252,250,0.1)',
-  color: 'var(--cream)',
+  color: 'var(--shell)',
   padding: '0.75rem 1rem',
-  fontFamily: 'var(--font-jakarta)',
+  fontFamily: 'var(--font-dm-sans)',
   fontSize: '0.82rem',
   fontWeight: 200,
   outline: 'none',
@@ -33,7 +33,7 @@ const labelStyle: React.CSSProperties = {
   textTransform: 'uppercase' as const,
   color: 'rgba(253,252,250,0.35)',
   fontWeight: 300,
-  fontFamily: 'var(--font-jakarta)',
+  fontFamily: 'var(--font-dm-sans)',
   display: 'block',
   marginBottom: '0.4rem',
 }
@@ -221,10 +221,10 @@ function SubmitButton({ label, formState }: { label: string; formState: FormStat
         marginTop: '1.5rem',
         width: '100%',
         padding: '0.95rem',
-        background: hovered && formState !== 'submitting' ? '#1d9d8f' : '#1A8A7D',
-        color: 'var(--cream)',
+        background: hovered && formState !== 'submitting' ? '#b8de30' : 'var(--lime)',
+        color: 'var(--ink)',
         border: 'none',
-        fontFamily: 'var(--font-jakarta)',
+        fontFamily: 'var(--font-dm-sans)',
         fontSize: '0.7rem',
         letterSpacing: '0.28em',
         textTransform: 'uppercase',
@@ -318,7 +318,7 @@ export default function EnquiryPanel({ type, onClose }: Props) {
             style={{
               width: '100%',
               maxWidth: 600,
-              background: '#0a1420',
+              background: '#0F0F0F',
               border: '0.5px solid rgba(253,252,250,0.1)',
               borderBottom: 'none',
               padding: 'clamp(2rem, 5vw, 3rem)',
@@ -342,9 +342,9 @@ export default function EnquiryPanel({ type, onClose }: Props) {
                 opacity: 0.4,
                 background: 'none',
                 border: 'none',
-                color: 'var(--cream)',
+                color: 'var(--shell)',
                 fontSize: '0.85rem',
-                fontFamily: 'var(--font-jakarta)',
+                fontFamily: 'var(--font-dm-sans)',
                 letterSpacing: '0.1em',
                 transition: 'opacity 0.3s',
               }}
@@ -359,10 +359,10 @@ export default function EnquiryPanel({ type, onClose }: Props) {
               fontSize: '0.6rem',
               letterSpacing: '0.32em',
               textTransform: 'uppercase',
-              color: 'var(--gold)',
+              color: 'var(--lime)',
               marginBottom: '0.7rem',
               fontWeight: 300,
-              fontFamily: 'var(--font-jakarta)',
+              fontFamily: 'var(--font-dm-sans)',
             }}>
               {eyebrow}
             </p>
@@ -372,7 +372,7 @@ export default function EnquiryPanel({ type, onClose }: Props) {
               fontSize: '2rem',
               marginBottom: '0.4rem',
               lineHeight: 1.1,
-              color: 'var(--cream)',
+              color: 'var(--shell)',
             }}>
               {title}
             </h2>
@@ -382,7 +382,7 @@ export default function EnquiryPanel({ type, onClose }: Props) {
               color: 'rgba(253,252,250,0.45)',
               marginBottom: '2.5rem',
               lineHeight: 1.7,
-              fontFamily: 'var(--font-jakarta)',
+              fontFamily: 'var(--font-dm-sans)',
             }}>
               {sub}
             </p>
@@ -393,7 +393,7 @@ export default function EnquiryPanel({ type, onClose }: Props) {
                 textAlign: 'center',
                 padding: '2rem 0',
                 color: 'rgba(253,252,250,0.7)',
-                fontFamily: 'var(--font-jakarta)',
+                fontFamily: 'var(--font-dm-sans)',
                 fontSize: '0.85rem',
                 lineHeight: 1.8,
               }}>
@@ -403,13 +403,13 @@ export default function EnquiryPanel({ type, onClose }: Props) {
             ) : formState === 'error' ? (
               <div style={{
                 color: 'rgba(253,252,250,0.55)',
-                fontFamily: 'var(--font-jakarta)',
+                fontFamily: 'var(--font-dm-sans)',
                 fontSize: '0.8rem',
                 lineHeight: 1.8,
                 marginBottom: '1.5rem',
               }}>
                 <p>Something went wrong.</p>
-                <p>WhatsApp us directly: <a href="https://wa.me/306974176759" style={{ color: 'var(--gold)', textDecoration: 'none' }}>+30 697 417 6759</a></p>
+                <p>WhatsApp us directly: <a href="https://wa.me/306974176759" style={{ color: 'var(--lime)', textDecoration: 'none' }}>+30 697 417 6759</a></p>
               </div>
             ) : (
               isHost

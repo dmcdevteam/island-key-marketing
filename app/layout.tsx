@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { fraunces, jakarta } from '@/lib/fonts'
+import { fraunces, dmSans } from '@/lib/fonts'
 import LenisProvider from '@/components/LenisProvider'
 import Nav from '@/components/Nav'
 import './globals.css'
@@ -78,7 +78,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${jakarta.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${dmSans.variable}`}>
       <body>
         <script
           type="application/ld+json"

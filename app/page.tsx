@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import RevealWrapper from '@/components/RevealWrapper'
 import EnquiryForm from '@/components/EnquiryForm'
+import IslandMemberModal from '@/components/IslandMemberModal'
 import Footer from '@/components/Footer'
 
 type ActiveCard = 'host' | 'operator' | null
@@ -45,9 +46,9 @@ function CollaborateCard({
           position: 'relative',
           cursor: 'pointer',
           padding: 'clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem)',
-          border: `1px solid ${isActive ? 'var(--gold)' : hovered ? 'rgba(196,165,90,0.5)' : 'rgba(253,252,250,0.08)'}`,
+          border: `1px solid ${isActive ? 'var(--lime)' : hovered ? 'rgba(200,244,53,0.5)' : 'rgba(253,252,250,0.08)'}`,
           background: isActive
-            ? 'rgba(196,165,90,0.04)'
+            ? 'rgba(200,244,53,0.04)'
             : hovered
               ? 'rgba(253,252,250,0.02)'
               : 'transparent',
@@ -64,8 +65,8 @@ function CollaborateCard({
           width: '60%',
           height: '60%',
           background: isHost
-            ? 'radial-gradient(ellipse at top right, rgba(196,165,90,0.04) 0%, transparent 70%)'
-            : 'radial-gradient(ellipse at bottom right, rgba(26,138,125,0.04) 0%, transparent 70%)',
+            ? 'radial-gradient(ellipse at top right, rgba(200,244,53,0.04) 0%, transparent 70%)'
+            : 'radial-gradient(ellipse at bottom right, rgba(200,244,53,0.04) 0%, transparent 70%)',
           pointerEvents: 'none',
           transition: 'opacity 0.5s ease',
           opacity: hovered || isActive ? 1 : 0,
@@ -79,8 +80,8 @@ function CollaborateCard({
           width: isActive ? '100%' : hovered ? '60%' : '0%',
           height: 1,
           background: isHost
-            ? 'linear-gradient(90deg, var(--gold), transparent)'
-            : 'linear-gradient(90deg, var(--teal), transparent)',
+            ? 'linear-gradient(90deg, var(--lime), transparent)'
+            : 'linear-gradient(90deg, var(--lime), transparent)',
           transition: 'width 0.6s cubic-bezier(0.16,1,0.3,1)',
         }} />
 
@@ -88,7 +89,7 @@ function CollaborateCard({
         <div style={{
           width: 48,
           height: 48,
-          border: `1px solid ${isActive ? 'var(--gold)' : 'rgba(253,252,250,0.12)'}`,
+          border: `1px solid ${isActive ? 'var(--lime)' : 'rgba(253,252,250,0.12)'}`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -97,12 +98,12 @@ function CollaborateCard({
           transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
         }}>
           {isHost ? (
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={isActive ? 'var(--gold)' : 'rgba(253,252,250,0.4)'} strokeWidth="1" style={{ transition: 'stroke 0.4s ease' }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={isActive ? 'var(--lime)' : 'rgba(253,252,250,0.4)'} strokeWidth="1" style={{ transition: 'stroke 0.4s ease' }}>
               <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
               <polyline points="9 22 9 12 15 12 15 22" />
             </svg>
           ) : (
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={isActive ? 'var(--teal)' : 'rgba(253,252,250,0.4)'} strokeWidth="1" style={{ transition: 'stroke 0.4s ease' }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={isActive ? 'var(--lime)' : 'rgba(253,252,250,0.4)'} strokeWidth="1" style={{ transition: 'stroke 0.4s ease' }}>
               <circle cx="12" cy="12" r="10" />
               <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
             </svg>
@@ -113,7 +114,7 @@ function CollaborateCard({
           fontFamily: 'var(--font-fraunces)',
           fontWeight: 200,
           fontSize: 'clamp(1.4rem, 2.5vw, 2rem)',
-          color: 'var(--cream)',
+          color: 'var(--shell)',
           lineHeight: 1.15,
           marginBottom: '0.8rem',
           letterSpacing: '0.01em',
@@ -123,10 +124,10 @@ function CollaborateCard({
         </h3>
 
         <p style={{
-          fontFamily: 'var(--font-jakarta)',
+          fontFamily: 'var(--font-dm-sans)',
           fontWeight: 300,
           fontSize: 'clamp(0.75rem, 1.2vw, 0.85rem)',
-          color: 'var(--cream)',
+          color: 'var(--shell)',
           opacity: 0.45,
           lineHeight: 1.7,
           maxWidth: 340,
@@ -145,12 +146,12 @@ function CollaborateCard({
           marginTop: 'clamp(1.5rem, 3vw, 2.5rem)',
         }}>
           <span style={{
-            fontFamily: 'var(--font-jakarta)',
+            fontFamily: 'var(--font-dm-sans)',
             fontWeight: 300,
             fontSize: '0.6rem',
             letterSpacing: '0.25em',
             textTransform: 'uppercase',
-            color: 'var(--cream)',
+            color: 'var(--shell)',
             opacity: isActive ? 0.6 : 0.25,
             transition: 'opacity 0.3s ease',
           }}>
@@ -159,7 +160,7 @@ function CollaborateCard({
           <div style={{
             width: 24,
             height: 24,
-            border: `1px solid ${isActive ? 'var(--gold)' : 'rgba(253,252,250,0.15)'}`,
+            border: `1px solid ${isActive ? 'var(--lime)' : 'rgba(253,252,250,0.15)'}`,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -167,8 +168,8 @@ function CollaborateCard({
             transform: isActive ? 'rotate(45deg)' : 'rotate(0deg)',
           }}>
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <line x1="5" y1="1" x2="5" y2="9" stroke={isActive ? 'var(--gold)' : 'rgba(253,252,250,0.35)'} strokeWidth="0.8" style={{ transition: 'stroke 0.3s ease' }} />
-              <line x1="1" y1="5" x2="9" y2="5" stroke={isActive ? 'var(--gold)' : 'rgba(253,252,250,0.35)'} strokeWidth="0.8" style={{ transition: 'stroke 0.3s ease' }} />
+              <line x1="5" y1="1" x2="5" y2="9" stroke={isActive ? 'var(--lime)' : 'rgba(253,252,250,0.35)'} strokeWidth="0.8" style={{ transition: 'stroke 0.3s ease' }} />
+              <line x1="1" y1="5" x2="9" y2="5" stroke={isActive ? 'var(--lime)' : 'rgba(253,252,250,0.35)'} strokeWidth="0.8" style={{ transition: 'stroke 0.3s ease' }} />
             </svg>
           </div>
         </div>
@@ -199,8 +200,8 @@ function CollaborateCard({
                 width: '60%',
                 height: 120,
                 background: isHost
-                  ? 'radial-gradient(ellipse at top, rgba(196,165,90,0.03) 0%, transparent 70%)'
-                  : 'radial-gradient(ellipse at top, rgba(26,138,125,0.03) 0%, transparent 70%)',
+                  ? 'radial-gradient(ellipse at top, rgba(200,244,53,0.03) 0%, transparent 70%)'
+                  : 'radial-gradient(ellipse at top, rgba(200,244,53,0.03) 0%, transparent 70%)',
                 pointerEvents: 'none',
               }} />
               <EnquiryForm type={isHost ? 'host' : 'operator'} />
@@ -212,11 +213,165 @@ function CollaborateCard({
   )
 }
 
+function MemberCard({
+  isOtherActive,
+  onOpen,
+}: {
+  isOtherActive: boolean
+  onOpen: () => void
+}) {
+  const [hovered, setHovered] = useState(false)
+
+  return (
+    <div
+      className="collab-card"
+      style={{
+        position: 'relative',
+        opacity: isOtherActive ? 0.3 : 1,
+        transition: 'opacity 0.5s cubic-bezier(0.16,1,0.3,1)',
+        pointerEvents: isOtherActive ? 'none' : 'auto',
+        height: '100%',
+      }}
+    >
+      <div
+        onClick={onOpen}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          position: 'relative',
+          cursor: 'pointer',
+          padding: 'clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem)',
+          border: `1px solid ${hovered ? 'rgba(200,244,53,0.5)' : 'rgba(253,252,250,0.08)'}`,
+          background: hovered ? 'rgba(253,252,250,0.02)' : 'transparent',
+          transition: 'all 0.5s cubic-bezier(0.16,1,0.3,1)',
+          overflow: 'hidden',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
+        {/* Atmospheric corner glow */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          width: '60%',
+          height: '60%',
+          background: 'radial-gradient(ellipse at top right, rgba(200,244,53,0.04) 0%, transparent 70%)',
+          pointerEvents: 'none',
+          transition: 'opacity 0.5s ease',
+          opacity: hovered ? 1 : 0,
+        }} />
+
+        {/* Accent line */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: hovered ? '60%' : '0%',
+          height: 1,
+          background: 'linear-gradient(90deg, var(--lime), transparent)',
+          transition: 'width 0.6s cubic-bezier(0.16,1,0.3,1)',
+        }} />
+
+        {/* Icon */}
+        <div style={{
+          width: 48,
+          height: 48,
+          border: `1px solid rgba(253,252,250,0.12)`,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          margin: '0 auto clamp(1.5rem, 3vw, 2.5rem)',
+          transition: 'border-color 0.4s ease, transform 0.4s ease',
+          transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
+        }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(253,252,250,0.4)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'stroke 0.4s ease' }}>
+            <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
+          </svg>
+        </div>
+
+        <h3 style={{
+          fontFamily: 'var(--font-fraunces)',
+          fontWeight: 200,
+          fontSize: 'clamp(1.4rem, 2.5vw, 2rem)',
+          color: 'var(--shell)',
+          lineHeight: 1.15,
+          marginBottom: '0.8rem',
+          letterSpacing: '0.01em',
+          textAlign: 'center',
+        }}>
+          Island Member
+        </h3>
+
+        <p style={{
+          fontFamily: 'var(--font-dm-sans)',
+          fontWeight: 300,
+          fontSize: 'clamp(0.75rem, 1.2vw, 0.85rem)',
+          color: 'var(--shell)',
+          opacity: 0.45,
+          lineHeight: 1.7,
+          maxWidth: 340,
+          margin: '0 auto',
+          textAlign: 'center',
+        }}>
+          Already a guest of one of our partner properties? Access your personalised Crete concierge.
+        </p>
+
+        {/* Toggle indicator — same as other cards */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '0.6rem',
+          marginTop: 'clamp(1.5rem, 3vw, 2.5rem)',
+        }}>
+          <span style={{
+            fontFamily: 'var(--font-dm-sans)',
+            fontWeight: 300,
+            fontSize: '0.6rem',
+            letterSpacing: '0.25em',
+            textTransform: 'uppercase',
+            color: 'var(--shell)',
+            opacity: 0.25,
+            transition: 'opacity 0.3s ease',
+          }}>
+            Enter
+          </span>
+          <div style={{
+            width: 24,
+            height: 24,
+            border: '1px solid rgba(253,252,250,0.15)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'all 0.4s cubic-bezier(0.16,1,0.3,1)',
+          }}>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <line x1="5" y1="1" x2="5" y2="9" stroke="rgba(253,252,250,0.35)" strokeWidth="0.8" />
+              <line x1="1" y1="5" x2="9" y2="5" stroke="rgba(253,252,250,0.35)" strokeWidth="0.8" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoReady, setVideoReady] = useState(false)
   const scrollIndicatorRef = useRef<HTMLDivElement>(null)
   const [activeCard, setActiveCard] = useState<ActiveCard>(null)
+  const [memberOpen, setMemberOpen] = useState(false)
+
+  // Listen for nav "Island Member" click
+  useEffect(() => {
+    const handler = () => setMemberOpen(true)
+    window.addEventListener('open-island-member', handler)
+    return () => window.removeEventListener('open-island-member', handler)
+  }, [])
 
   // Scroll indicator fade
   useEffect(() => {
@@ -247,7 +402,7 @@ export default function Home() {
           position: 'absolute',
           inset: 0,
           zIndex: 1,
-          backgroundColor: '#081a17',
+          backgroundColor: '#0F0F0F',
         }} />
 
         {/* Video */}
@@ -310,12 +465,12 @@ export default function Home() {
             }}
           />
           <p style={{
-            fontFamily: 'var(--font-jakarta)',
+            fontFamily: 'var(--font-dm-sans)',
             fontWeight: 400,
             fontSize: 'clamp(0.7rem, 1.4vw, 0.95rem)',
             letterSpacing: '0.45em',
             textTransform: 'uppercase',
-            color: 'var(--cream)',
+            color: 'var(--shell)',
             textShadow: '0 2px 12px rgba(0,0,0,0.6)',
           }}>
             Your island. Unlocked.
@@ -338,7 +493,7 @@ export default function Home() {
           <div style={{
             width: 1,
             height: 40,
-            background: 'var(--gold)',
+            background: 'var(--lime)',
             animation: 'scrollPulse 2s ease-in-out infinite',
             transformOrigin: 'top',
           }} />
@@ -362,7 +517,7 @@ export default function Home() {
         position: 'relative',
       }}>
         <RevealWrapper>
-          <div className="gold-rule" style={{ marginBottom: 'clamp(2rem, 4vh, 3.5rem)' }} />
+          <div className="lime-rule" style={{ marginBottom: 'clamp(2rem, 4vh, 3.5rem)' }} />
           <p style={{
             fontFamily: 'var(--font-fraunces)',
             fontWeight: 200,
@@ -372,11 +527,11 @@ export default function Home() {
             maxWidth: 780,
             margin: '0 auto',
             textAlign: 'center',
-            color: 'var(--cream)',
+            color: 'var(--shell)',
           }}>
             Crete has secrets most guests can&apos;t find. Island Key changes that.
           </p>
-          <div className="gold-rule" style={{ marginTop: 'clamp(2rem, 4vh, 3.5rem)' }} />
+          <div className="lime-rule" style={{ marginTop: 'clamp(2rem, 4vh, 3.5rem)' }} />
         </RevealWrapper>
       </section>
 
@@ -398,7 +553,7 @@ export default function Home() {
           width: '80%',
           maxWidth: 900,
           height: '60%',
-          background: 'radial-gradient(ellipse, rgba(26,138,125,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(200,244,53,0.06) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} />
 
@@ -406,12 +561,12 @@ export default function Home() {
           <RevealWrapper>
             <div style={{ textAlign: 'center', marginBottom: 'clamp(3rem, 6vh, 5rem)' }}>
               <p style={{
-                fontFamily: 'var(--font-jakarta)',
+                fontFamily: 'var(--font-dm-sans)',
                 fontWeight: 300,
                 fontSize: '0.6rem',
                 letterSpacing: '0.35em',
                 textTransform: 'uppercase',
-                color: 'var(--gold)',
+                color: 'var(--lime)',
                 marginBottom: '1.2rem',
               }}>
                 Join the network
@@ -420,21 +575,21 @@ export default function Home() {
                 fontFamily: 'var(--font-fraunces)',
                 fontWeight: 200,
                 fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
-                color: 'var(--cream)',
+                color: 'var(--shell)',
                 lineHeight: 1.1,
                 letterSpacing: '0.02em',
                 marginBottom: '1rem',
               }}>
                 Collaborate with us.
               </h2>
-              <div className="gold-rule" style={{ marginTop: '1.5rem' }} />
+              <div className="lime-rule" style={{ marginTop: '1.5rem' }} />
             </div>
           </RevealWrapper>
 
           {/* Cards */}
           <div className="collab-grid" style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
+            gridTemplateColumns: '1fr 1fr 1fr',
             gap: 'clamp(1rem, 2vw, 2rem)',
           }}>
             <RevealWrapper delay={100}>
@@ -457,11 +612,17 @@ export default function Home() {
                 onToggle={() => toggleCard('operator')}
               />
             </RevealWrapper>
+            <RevealWrapper delay={400}>
+              <MemberCard
+                isOtherActive={activeCard !== null}
+                onOpen={() => setMemberOpen(true)}
+              />
+            </RevealWrapper>
           </div>
         </div>
 
         <style jsx>{`
-          @media (max-width: 768px) {
+          @media (max-width: 900px) {
             .collab-grid {
               grid-template-columns: 1fr !important;
             }
@@ -470,6 +631,9 @@ export default function Home() {
       </section>
 
       <Footer />
+
+      {/* Island Member Modal */}
+      <IslandMemberModal open={memberOpen} onClose={() => setMemberOpen(false)} />
     </main>
   )
 }

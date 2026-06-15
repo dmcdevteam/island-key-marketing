@@ -17,7 +17,7 @@ const labelStyle: React.CSSProperties = {
   fontSize: '0.6rem',
   letterSpacing: '0.22em',
   textTransform: 'uppercase',
-  fontFamily: 'var(--font-jakarta)',
+  fontFamily: 'var(--font-dm-sans)',
   fontWeight: 300,
   color: 'rgba(253,252,250,0.65)',
   display: 'block',
@@ -28,9 +28,9 @@ const inputStyle: React.CSSProperties = {
   background: 'transparent',
   border: 'none',
   borderBottom: '1px solid rgba(253,252,250,0.35)',
-  color: 'var(--cream)',
+  color: 'var(--shell)',
   padding: '0.75rem 0',
-  fontFamily: 'var(--font-jakarta)',
+  fontFamily: 'var(--font-dm-sans)',
   fontWeight: 300,
   fontSize: '0.9rem',
   width: '100%',
@@ -70,7 +70,7 @@ function TextInput({ name, placeholder, type = 'text', required, value, onChange
       onBlur={() => setFocused(false)}
       style={{
         ...inputStyle,
-        borderBottomColor: focused ? 'var(--gold)' : 'rgba(253,252,250,0.35)',
+        borderBottomColor: focused ? 'var(--lime)' : 'rgba(253,252,250,0.35)',
       }}
     />
   )
@@ -96,13 +96,13 @@ function SelectInput({ name, options, placeholder, value, onChange }: {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'right 0 center',
         paddingRight: '1.5rem',
-        borderBottomColor: focused ? 'var(--gold)' : 'rgba(253,252,250,0.35)',
-        color: value ? 'var(--cream)' : 'rgba(253,252,250,0.4)',
+        borderBottomColor: focused ? 'var(--lime)' : 'rgba(253,252,250,0.35)',
+        color: value ? 'var(--shell)' : 'rgba(253,252,250,0.4)',
       }}
     >
-      <option value="" style={{ background: '#081a17', color: 'var(--cream)' }}>{placeholder || 'Select...'}</option>
+      <option value="" style={{ background: '#0F0F0F', color: 'var(--shell)' }}>{placeholder || 'Select...'}</option>
       {options.map(o => (
-        <option key={o} value={o} style={{ background: '#081a17', color: 'var(--cream)' }}>{o}</option>
+        <option key={o} value={o} style={{ background: '#0F0F0F', color: 'var(--shell)' }}>{o}</option>
       ))}
     </select>
   )
@@ -124,7 +124,7 @@ function TextArea({ name, placeholder, value, onChange }: {
         ...inputStyle,
         resize: 'none',
         minHeight: 100,
-        borderBottomColor: focused ? 'var(--gold)' : 'rgba(253,252,250,0.35)',
+        borderBottomColor: focused ? 'var(--lime)' : 'rgba(253,252,250,0.35)',
       }}
     />
   )
@@ -146,29 +146,29 @@ function MultiSelect({ options, selected, onChange }: {
             onClick={() => toggle(opt)}
             onMouseEnter={e => {
               if (!active) {
-                e.currentTarget.style.borderColor = 'var(--gold)'
-                e.currentTarget.style.background = 'rgba(196,165,90,0.08)'
+                e.currentTarget.style.borderColor = 'var(--lime)'
+                e.currentTarget.style.background = 'rgba(200,244,53,0.08)'
                 e.currentTarget.style.transform = 'translateY(-1px)'
               }
             }}
             onMouseLeave={e => {
               if (!active) {
-                e.currentTarget.style.borderColor = 'rgba(196,165,90,0.4)'
+                e.currentTarget.style.borderColor = 'rgba(200,244,53,0.4)'
                 e.currentTarget.style.background = 'transparent'
                 e.currentTarget.style.transform = 'translateY(0)'
               }
             }}
             style={{
-              border: `0.5px solid ${active ? 'var(--gold)' : 'rgba(196,165,90,0.4)'}`,
-              background: active ? 'var(--gold)' : 'transparent',
-              color: active ? 'var(--ink)' : 'var(--cream)',
+              border: `0.5px solid ${active ? 'var(--lime)' : 'rgba(200,244,53,0.4)'}`,
+              background: active ? 'var(--lime)' : 'transparent',
+              color: active ? 'var(--ink)' : 'var(--shell)',
               fontSize: '0.65rem',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
               padding: '0.4rem 0.9rem',
               cursor: 'pointer',
               transition: 'all 0.3s cubic-bezier(0.16,1,0.3,1)',
-              fontFamily: 'var(--font-jakarta)',
+              fontFamily: 'var(--font-dm-sans)',
               fontWeight: 300,
             }}
           >
@@ -194,15 +194,15 @@ function RatingScale({ value, onChange }: { value: number; onChange: (v: number)
                 width: 28,
                 height: 28,
                 borderRadius: '50%',
-                border: `0.5px solid ${isActive ? 'var(--gold)' : 'rgba(253,252,250,0.15)'}`,
-                background: isActive ? 'var(--gold)' : 'transparent',
+                border: `0.5px solid ${isActive ? 'var(--lime)' : 'rgba(253,252,250,0.15)'}`,
+                background: isActive ? 'var(--lime)' : 'transparent',
                 cursor: 'pointer',
                 transition: 'all 0.3s cubic-bezier(0.16,1,0.3,1)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontSize: '0.55rem',
-                fontFamily: 'var(--font-jakarta)',
+                fontFamily: 'var(--font-dm-sans)',
                 fontWeight: 300,
                 color: isActive ? 'var(--ink)' : 'rgba(253,252,250,0.25)',
                 transform: value === n ? 'scale(1.1)' : 'scale(1)',
@@ -217,9 +217,9 @@ function RatingScale({ value, onChange }: { value: number; onChange: (v: number)
         display: 'flex',
         justifyContent: 'space-between',
         fontSize: '0.6rem',
-        color: 'var(--cream)',
+        color: 'var(--shell)',
         opacity: 0.3,
-        fontFamily: 'var(--font-jakarta)',
+        fontFamily: 'var(--font-dm-sans)',
         fontWeight: 200,
         maxWidth: 28 * 5 + 19.2 * 4,
         letterSpacing: '0.05em',
@@ -250,7 +250,7 @@ function AnimatedCheck() {
       <path
         ref={pathRef}
         d="M4 12l6 6L20 6"
-        stroke="var(--gold)"
+        stroke="var(--lime)"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -338,7 +338,7 @@ export default function EnquiryForm({ type }: Props) {
           width: 240,
           height: 240,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(196,165,90,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(200,244,53,0.06) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} />
         <AnimatedCheck />
@@ -347,17 +347,17 @@ export default function EnquiryForm({ type }: Props) {
           fontWeight: 200,
           fontStyle: 'italic',
           fontSize: '2.2rem',
-          color: 'var(--cream)',
+          color: 'var(--shell)',
           marginBottom: '1rem',
           position: 'relative',
         }}>
           Thank you.
         </h3>
         <p style={{
-          fontFamily: 'var(--font-jakarta)',
+          fontFamily: 'var(--font-dm-sans)',
           fontWeight: 300,
           fontSize: '0.85rem',
-          color: 'var(--cream)',
+          color: 'var(--shell)',
           opacity: 0.55,
           maxWidth: 400,
           margin: '0 auto 2rem',
@@ -368,15 +368,15 @@ export default function EnquiryForm({ type }: Props) {
         <div style={{
           width: 60,
           height: 1,
-          background: 'var(--gold)',
+          background: 'var(--lime)',
           opacity: 0.4,
           margin: '0 auto 2rem',
         }} />
         <p style={{
-          fontFamily: 'var(--font-jakarta)',
+          fontFamily: 'var(--font-dm-sans)',
           fontWeight: 300,
           fontSize: '0.8rem',
-          color: 'var(--cream)',
+          color: 'var(--shell)',
           opacity: 0.5,
           marginBottom: '1rem',
         }}>
@@ -391,8 +391,8 @@ export default function EnquiryForm({ type }: Props) {
             alignItems: 'center',
             gap: '0.7rem',
             textDecoration: 'none',
-            color: 'var(--cream)',
-            fontFamily: 'var(--font-jakarta)',
+            color: 'var(--shell)',
+            fontFamily: 'var(--font-dm-sans)',
             fontWeight: 300,
             fontSize: '0.75rem',
             letterSpacing: '0.2em',
@@ -403,7 +403,7 @@ export default function EnquiryForm({ type }: Props) {
             display: 'inline-block',
             width: 28,
             height: '0.5px',
-            background: 'var(--gold)',
+            background: 'var(--lime)',
           }} />
           Share the link
         </a>
@@ -418,22 +418,22 @@ export default function EnquiryForm({ type }: Props) {
           fontFamily: 'var(--font-fraunces)',
           fontWeight: 200,
           fontSize: '1.5rem',
-          color: 'var(--cream)',
+          color: 'var(--shell)',
           marginBottom: '1rem',
         }}>
           Something went wrong.
         </h3>
         <p style={{
-          fontFamily: 'var(--font-jakarta)',
+          fontFamily: 'var(--font-dm-sans)',
           fontWeight: 300,
           fontSize: '0.85rem',
-          color: 'var(--cream)',
+          color: 'var(--shell)',
           opacity: 0.55,
         }}>
           WhatsApp us directly:{' '}
           <a
             href="https://wa.me/306974176759"
-            style={{ color: 'var(--gold)', textDecoration: 'none' }}
+            style={{ color: 'var(--lime)', textDecoration: 'none' }}
           >
             +30 697 417 6759
           </a>
@@ -643,16 +643,16 @@ export default function EnquiryForm({ type }: Props) {
             top: 0,
             left: 0,
             height: 1,
-            background: 'var(--gold)',
+            background: 'var(--lime)',
             width: `${(step / 5) * 100}%`,
             transition: 'width 0.5s ease-in-out',
           }} />
         </div>
         <span style={{
           fontSize: '0.65rem',
-          color: 'var(--cream)',
+          color: 'var(--shell)',
           opacity: 0.55,
-          fontFamily: 'var(--font-jakarta)',
+          fontFamily: 'var(--font-dm-sans)',
           fontWeight: 300,
           whiteSpace: 'nowrap',
         }}>
@@ -666,7 +666,7 @@ export default function EnquiryForm({ type }: Props) {
         fontWeight: 200,
         fontStyle: 'italic',
         fontSize: '1.1rem',
-        color: 'var(--gold)',
+        color: 'var(--lime)',
         opacity: 0.6,
         marginBottom: '1.8rem',
         letterSpacing: '0.02em',
@@ -698,12 +698,12 @@ export default function EnquiryForm({ type }: Props) {
           <div
             onClick={back}
             style={{
-              fontFamily: 'var(--font-jakarta)',
+              fontFamily: 'var(--font-dm-sans)',
               fontWeight: 300,
               fontSize: '0.7rem',
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
-              color: 'var(--cream)',
+              color: 'var(--shell)',
               opacity: 0.4,
               cursor: 'pointer',
               background: 'none',
@@ -723,12 +723,12 @@ export default function EnquiryForm({ type }: Props) {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.7rem',
-              fontFamily: 'var(--font-jakarta)',
+              fontFamily: 'var(--font-dm-sans)',
               fontWeight: 300,
               fontSize: '0.75rem',
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
-              color: 'var(--cream)',
+              color: 'var(--shell)',
               cursor: valid ? 'pointer' : 'not-allowed',
               opacity: valid ? 1 : 0.25,
             }}
@@ -738,7 +738,7 @@ export default function EnquiryForm({ type }: Props) {
               display: 'inline-block',
               width: 28,
               height: '0.5px',
-              background: 'var(--gold)',
+              background: 'var(--lime)',
             }} />
           </div>
         ) : (
@@ -747,10 +747,10 @@ export default function EnquiryForm({ type }: Props) {
             style={{
               flex: 1,
               marginLeft: step > 1 ? '2rem' : 0,
-              background: 'var(--teal)',
-              color: 'var(--cream)',
+              background: 'var(--lime)',
+              color: 'var(--ink)',
               padding: '0.9rem 2rem',
-              fontFamily: 'var(--font-jakarta)',
+              fontFamily: 'var(--font-dm-sans)',
               fontWeight: 300,
               fontSize: '0.75rem',
               letterSpacing: '0.2em',

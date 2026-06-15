@@ -73,10 +73,10 @@ function CtaCard({ eyebrow, title, titleLine2, description, cta, onClick }: Card
         fontSize: '0.6rem',
         letterSpacing: '0.32em',
         textTransform: 'uppercase',
-        color: 'var(--gold)',
+        color: 'var(--lime)',
         marginBottom: '0.9rem',
         fontWeight: 300,
-        fontFamily: 'var(--font-jakarta)',
+        fontFamily: 'var(--font-dm-sans)',
       }}>
         {eyebrow}
       </p>
@@ -88,7 +88,7 @@ function CtaCard({ eyebrow, title, titleLine2, description, cta, onClick }: Card
         letterSpacing: '0.02em',
         lineHeight: 1.05,
         marginBottom: '0.8rem',
-        color: 'var(--cream)',
+        color: 'var(--shell)',
       }}>
         {title}<br />{titleLine2}
       </h2>
@@ -99,7 +99,7 @@ function CtaCard({ eyebrow, title, titleLine2, description, cta, onClick }: Card
         lineHeight: 1.7,
         color: 'rgba(253,252,250,0.5)',
         marginBottom: '1.4rem',
-        fontFamily: 'var(--font-jakarta)',
+        fontFamily: 'var(--font-dm-sans)',
       }}>
         {description}
       </p>
@@ -111,9 +111,9 @@ function CtaCard({ eyebrow, title, titleLine2, description, cta, onClick }: Card
         fontSize: '0.65rem',
         letterSpacing: '0.22em',
         textTransform: 'uppercase',
-        color: 'var(--cream)',
+        color: 'var(--shell)',
         fontWeight: 300,
-        fontFamily: 'var(--font-jakarta)',
+        fontFamily: 'var(--font-dm-sans)',
       }}>
         <motion.span
           initial={{ width: 22 }}
@@ -122,7 +122,7 @@ function CtaCard({ eyebrow, title, titleLine2, description, cta, onClick }: Card
           style={{
             display: 'inline-block',
             height: '0.5px',
-            background: 'var(--gold)',
+            background: 'var(--lime)',
           }}
         />
         {cta}
@@ -175,12 +175,12 @@ export default function HeroContent({ visible, onOpenHost, onOpenOperator }: Pro
               fontSize: 'clamp(2.8rem, 7vw, 5.5rem)',
               letterSpacing: '0.12em',
               lineHeight: 1,
-              color: 'var(--cream)',
+              color: 'var(--shell)',
             }}>
               Island Key
             </h1>
             <p style={{
-              fontFamily: 'var(--font-jakarta)',
+              fontFamily: 'var(--font-dm-sans)',
               fontWeight: 200,
               fontSize: 'clamp(0.6rem, 1.2vw, 0.8rem)',
               letterSpacing: '0.4em',
@@ -200,7 +200,7 @@ export default function HeroContent({ visible, onOpenHost, onOpenOperator }: Pro
             style={{
               width: 1,
               height: 48,
-              background: 'linear-gradient(to bottom, transparent, rgba(196,165,90,0.4), transparent)',
+              background: 'linear-gradient(to bottom, transparent, rgba(200,244,53,0.4), transparent)',
               margin: '2.2rem auto',
             }}
           />
@@ -274,10 +274,10 @@ export default function HeroContent({ visible, onOpenHost, onOpenOperator }: Pro
                     fontSize: '0.6rem',
                     letterSpacing: '0.22em',
                     textTransform: 'uppercase',
-                    color: 'var(--cream)',
+                    color: 'var(--shell)',
                     textDecoration: 'none',
                     fontWeight: 200,
-                    fontFamily: 'var(--font-jakarta)',
+                    fontFamily: 'var(--font-dm-sans)',
                     transition: 'opacity 0.3s',
                   }}
                   onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}

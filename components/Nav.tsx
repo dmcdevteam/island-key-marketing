@@ -14,6 +14,10 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  function openMemberModal() {
+    window.dispatchEvent(new CustomEvent('open-island-member'))
+  }
+
   return (
     <nav
       style={{
@@ -25,6 +29,7 @@ export default function Nav() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        gap: '1rem',
         padding: '1.4rem 3rem',
         opacity: scrolled ? 1 : 0,
         pointerEvents: scrolled ? 'auto' : 'none',
@@ -39,29 +44,59 @@ export default function Nav() {
         <img src="/logo_icon.png" alt="Island Key" style={{ height: 32, width: 'auto', opacity: 0.85 }} />
       </Link>
 
-      {/* Collaborate — center */}
+      {/* Collaborate */}
       <a
         href="#collaborate"
         style={{
-          fontFamily: 'var(--font-jakarta)',
+          fontFamily: 'var(--font-dm-sans)',
           fontWeight: 300,
           fontSize: '0.65rem',
           letterSpacing: '0.25em',
           textTransform: 'uppercase',
-          color: 'var(--cream)',
+          color: 'var(--shell)',
           opacity: 0.6,
           textDecoration: 'none',
           transition: 'opacity 0.3s ease, border-color 0.3s ease',
           padding: '0.5rem 1.2rem',
-          border: '1px solid rgba(196,165,90,0.2)',
+          border: '1px solid rgba(200,244,53,0.2)',
         }}
-        onMouseEnter={e => (e.currentTarget.style.opacity = '1', e.currentTarget.style.borderColor = 'rgba(196,165,90,0.5)')}
-        onMouseLeave={e => (e.currentTarget.style.opacity = '0.6', e.currentTarget.style.borderColor = 'rgba(196,165,90,0.2)')}
+        onMouseEnter={e => (e.currentTarget.style.opacity = '1', e.currentTarget.style.borderColor = 'rgba(200,244,53,0.5)')}
+        onMouseLeave={e => (e.currentTarget.style.opacity = '0.6', e.currentTarget.style.borderColor = 'rgba(200,244,53,0.2)')}
       >
         Collaborate
       </a>
 
-      {/* Gold accent line at bottom */}
+      {/* Island Member — lime pill CTA */}
+      <button
+        onClick={openMemberModal}
+        style={{
+          fontFamily: 'var(--font-dm-sans)',
+          fontWeight: 500,
+          fontSize: '0.65rem',
+          letterSpacing: '0.15em',
+          textTransform: 'uppercase',
+          color: 'var(--shell)',
+          background: 'transparent',
+          border: '1px solid rgba(200,244,53,0.2)',
+          borderRadius: 0,
+          padding: '0.5rem 1.2rem',
+          cursor: 'pointer',
+          transition: 'all 0.3s ease',
+          whiteSpace: 'nowrap',
+        }}
+        onMouseEnter={e => {
+          e.currentTarget.style.opacity = '1'
+          e.currentTarget.style.borderColor = 'rgba(200,244,53,0.5)'
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.opacity = '0.6'
+          e.currentTarget.style.borderColor = 'rgba(200,244,53,0.2)'
+        }}
+      >
+        Island Member
+      </button>
+
+      {/* Accent line at bottom */}
       {scrolled && (
         <div style={{
           position: 'absolute',
@@ -69,7 +104,7 @@ export default function Nav() {
           left: '3rem',
           right: '3rem',
           height: '0.5px',
-          background: 'linear-gradient(90deg, transparent, rgba(196,165,90,0.15), transparent)',
+          background: 'linear-gradient(90deg, transparent, rgba(200,244,53,0.15), transparent)',
         }} />
       )}
     </nav>

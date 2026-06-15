@@ -1,16 +1,16 @@
-import { Fraunces, Plus_Jakarta_Sans } from 'next/font/google'
+import { Fraunces, DM_Sans } from 'next/font/google'
 
 export const fraunces = Fraunces({
   subsets: ['latin'],
-  weight: ['200', '300', '400'],
+  weight: ['200', '300', '400', '500', '600'],
   style: ['normal', 'italic'],
   variable: '--font-fraunces',
   display: 'swap',
 })
 
-export const jakarta = Plus_Jakarta_Sans({
+export const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['200', '300', '400', '500'],
-  variable: '--font-jakarta',
+  weight: ['200', '300', '400', '500', '600'],
+  variable: '--font-dm-sans',
   display: 'swap',
 })

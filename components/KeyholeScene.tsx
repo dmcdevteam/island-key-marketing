@@ -195,7 +195,7 @@ export default function KeyholeScene({ onHeroReady }: Props) {
           position: 'fixed',
           inset: 0,
           zIndex: 0,
-          background: '#081a17',
+          background: '#0F0F0F',
         }}
       >
         {REEL_READY ? (
@@ -221,7 +221,7 @@ export default function KeyholeScene({ onHeroReady }: Props) {
                 backgroundPosition: img.pos,
                 opacity: 0,
                 transition: 'opacity 2s ease',
-                backgroundColor: '#081a17',
+                backgroundColor: '#0F0F0F',
               }}
             />
           ))

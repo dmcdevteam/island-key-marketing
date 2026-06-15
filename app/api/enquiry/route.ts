@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
       ].join('')
 
   const html = `
-    <div style="font-family:sans-serif;max-width:600px;padding:32px;background:#1B2D4F;color:#FDFCFA;">
+    <div style="font-family:sans-serif;max-width:600px;padding:32px;background:#0F0F0F;color:#FDFCFA;">
       <h2 style="margin:0 0 8px;font-size:20px;font-weight:300;letter-spacing:2px;">
         ISLAND KEY \u2014 ${typeLabel} APPLICATION
       </h2>
@@ -103,7 +103,7 @@ export async function POST(request: NextRequest) {
       </table>
       <a href="${waLink}"
          style="display:inline-block;margin-top:24px;padding:12px 24px;
-                background:#1A8A7D;color:#FDFCFA;text-decoration:none;
+                background:#C8F435;color:#0F0F0F;text-decoration:none;
                 font-size:12px;letter-spacing:2px;">
         REPLY ON WHATSAPP \u2192
       </a>
