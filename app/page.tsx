@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import RevealWrapper from '@/components/RevealWrapper'
 import EnquiryForm from '@/components/EnquiryForm'
-import IslandMemberModal from '@/components/IslandMemberModal'
 import Footer from '@/components/Footer'
 
 type ActiveCard = 'host' | 'operator' | null
@@ -215,10 +214,8 @@ function CollaborateCard({
 
 function MemberCard({
   isOtherActive,
-  onOpen,
 }: {
   isOtherActive: boolean
-  onOpen: () => void
 }) {
   const [hovered, setHovered] = useState(false)
 
@@ -233,8 +230,10 @@ function MemberCard({
         height: '100%',
       }}
     >
-      <div
-        onClick={onOpen}
+      <a
+        href="https://app.islandkey.gr"
+        target="_blank"
+        rel="noopener noreferrer"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         style={{
@@ -249,6 +248,8 @@ function MemberCard({
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          textDecoration: 'none',
+          color: 'inherit',
         }}
       >
         {/* Atmospheric corner glow */}
@@ -354,7 +355,7 @@ function MemberCard({
             </svg>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   )
 }
@@ -364,15 +365,6 @@ export default function Home() {
   const [videoReady, setVideoReady] = useState(false)
   const scrollIndicatorRef = useRef<HTMLDivElement>(null)
   const [activeCard, setActiveCard] = useState<ActiveCard>(null)
-  const [memberOpen, setMemberOpen] = useState(false)
-
-  // Listen for nav "Island Member" click
-  useEffect(() => {
-    const handler = () => setMemberOpen(true)
-    window.addEventListener('open-island-member', handler)
-    return () => window.removeEventListener('open-island-member', handler)
-  }, [])
-
   // Scroll indicator fade
   useEffect(() => {
     const indicator = scrollIndicatorRef.current
@@ -615,7 +607,6 @@ export default function Home() {
             <RevealWrapper delay={400}>
               <MemberCard
                 isOtherActive={activeCard !== null}
-                onOpen={() => setMemberOpen(true)}
               />
             </RevealWrapper>
           </div>
@@ -631,9 +622,6 @@ export default function Home() {
       </section>
 
       <Footer />
-
-      {/* Island Member Modal */}
-      <IslandMemberModal open={memberOpen} onClose={() => setMemberOpen(false)} />
     </main>
   )
 }

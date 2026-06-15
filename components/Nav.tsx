@@ -14,10 +14,6 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  function openMemberModal() {
-    window.dispatchEvent(new CustomEvent('open-island-member'))
-  }
-
   return (
     <nav
       style={{
@@ -66,9 +62,11 @@ export default function Nav() {
         Collaborate
       </a>
 
-      {/* Island Member — lime pill CTA */}
-      <button
-        onClick={openMemberModal}
+      {/* Island Member — direct link to app */}
+      <a
+        href="https://app.islandkey.gr"
+        target="_blank"
+        rel="noopener noreferrer"
         style={{
           fontFamily: 'var(--font-dm-sans)',
           fontWeight: 500,
@@ -78,9 +76,8 @@ export default function Nav() {
           color: 'var(--shell)',
           background: 'transparent',
           border: '1px solid rgba(200,244,53,0.2)',
-          borderRadius: 0,
           padding: '0.5rem 1.2rem',
-          cursor: 'pointer',
+          textDecoration: 'none',
           transition: 'all 0.3s ease',
           whiteSpace: 'nowrap',
         }}
@@ -94,7 +91,7 @@ export default function Nav() {
         }}
       >
         Island Member
-      </button>
+      </a>
 
       {/* Accent line at bottom */}
       {scrolled && (
