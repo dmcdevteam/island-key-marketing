@@ -409,7 +409,7 @@ export default function EnquiryPanel({ type, onClose }: Props) {
                 marginBottom: '1.5rem',
               }}>
                 <p>Something went wrong.</p>
-                <p>WhatsApp us directly: <a href="https://wa.me/306974176759" style={{ color: 'var(--lime)', textDecoration: 'none' }}>+30 697 417 6759</a></p>
+                <p>WhatsApp us directly: <a href="https://wa.me/306985658410" style={{ color: 'var(--lime)', textDecoration: 'none' }}>+30 697 417 6759</a></p>
               </div>
             ) : (
               isHost

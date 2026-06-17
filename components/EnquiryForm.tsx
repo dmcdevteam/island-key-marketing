@@ -432,7 +432,7 @@ export default function EnquiryForm({ type }: Props) {
         }}>
           WhatsApp us directly:{' '}
           <a
-            href="https://wa.me/306974176759"
+            href="https://wa.me/306985658410"
             style={{ color: 'var(--lime)', textDecoration: 'none' }}
           >
             +30 697 417 6759

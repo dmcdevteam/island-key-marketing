@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
 
   const isHost = type === 'host'
   const timestamp = new Date().toLocaleString('en-GB', { timeZone: 'Europe/Athens' })
-  const whatsappNum = process.env.SPYROS_WHATSAPP ?? '306974176759'
+  const whatsappNum = process.env.SPYROS_WHATSAPP ?? '306985658410'
 
   const subject = isHost
     ? `Host Application \u2014 ${body.property_name || 'Unknown'}, ${body.location || 'Unknown'}`
