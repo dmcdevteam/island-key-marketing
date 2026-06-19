@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { fraunces, dmSans } from '@/lib/fonts'
 import LenisProvider from '@/components/LenisProvider'
 import Nav from '@/components/Nav'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -70,6 +71,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.islandkey.gr',
   },
+  verification: {
+    google: 'bO8KXrdl9YDkYVRI3f-MDE2Lu_lL8-Eot2tWypFq_eg',
+  },
 }
 
 export default function RootLayout({
@@ -110,6 +114,7 @@ export default function RootLayout({
           <Nav />
           {children}
         </LenisProvider>
+        <GoogleAnalytics gaId="G-KJFBK0XS0Z" />
       </body>
     </html>
   )
