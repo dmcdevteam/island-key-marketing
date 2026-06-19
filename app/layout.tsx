@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: '%s — Island Key',
   },
   description:
-    'Island Key is the concierge platform built into the places you stay in Crete. Curated experiences, trusted local operators, and everything the island offers — unlocked from your accommodation.',
+    'Island Key is the concierge platform built into your Crete accommodation. Curated experiences, trusted operators, and local expertise — unlocked.',
   keywords: [
     'Crete concierge',
     'Crete experiences',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     siteName: 'Island Key',
     title: 'Island Key — Your Island Unlocked',
     description:
-      'The concierge platform built into the places you stay in Crete. Experiences, transfers, rentals and local experts — curated and ready before you arrive.',
+      'Curated Crete experiences, transfers, and local experts — unlocked from your accommodation.',
     images: [
       {
         url: '/og-image.jpg',
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Island Key — Your Island Unlocked',
     description:
-      'The concierge platform built into the places you stay in Crete.',
+      'Curated Crete experiences, transfers, and local experts — unlocked from your accommodation.',
     images: ['/og-image.jpg'],
   },
   icons: {
