@@ -42,7 +42,10 @@ export async function POST(request: NextRequest) {
 
   const isHost = type === 'host'
   const timestamp = new Date().toLocaleString('en-GB', { timeZone: 'Europe/Athens' })
-  const whatsappNum = process.env.SPYROS_WHATSAPP ?? '306985658410'
+  // Normalise enquirer's WhatsApp number for wa.me link
+  const whatsappNum = whatsapp
+    .replace(/[\s\-\(\)\+]/g, '')
+    .replace(/^0/, '30') // Greek default if no country code
 
   const subject = isHost
     ? `Host Application \u2014 ${body.property_name || 'Unknown'}, ${body.location || 'Unknown'}`
@@ -51,9 +54,9 @@ export async function POST(request: NextRequest) {
   const typeLabel = isHost ? 'HOST' : 'OPERATOR'
 
   const waMessage = encodeURIComponent(
-    `Hi ${contactName}, thanks for applying to Island Key. I've reviewed your application and would love to connect. When is a good time to chat?`
+    `Hi ${contactName}, this is Island Key following up on your ${isHost ? 'host' : 'operator'} application. Thanks for applying — when is a good time to chat?`
   )
-  const waLink = `https://wa.me/${whatsappNum}?text=${waMessage}`
+  const waLink = whatsappNum ? `https://wa.me/${whatsappNum}?text=${waMessage}` : ''
 
   const fieldRows = isHost
     ? [
@@ -101,12 +104,12 @@ export async function POST(request: NextRequest) {
       <table style="border-collapse:collapse;width:100%;">
         ${fieldRows}
       </table>
-      <a href="${waLink}"
+      ${waLink ? `<a href="${waLink}"
          style="display:inline-block;margin-top:24px;padding:12px 24px;
                 background:#C8F435;color:#0F0F0F;text-decoration:none;
                 font-size:12px;letter-spacing:2px;">
         REPLY ON WHATSAPP \u2192
-      </a>
+      </a>` : ''}
     </div>
   `
 
